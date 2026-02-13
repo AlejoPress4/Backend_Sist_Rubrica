@@ -1,0 +1,8 @@
+import { UserRole } from '../../../common/constants/constants';
+export declare class RegisterDto {
+    email: string;
+    password: string;
+    nombre: string;
+    apellido: string;
+    rol: UserRole;
+}
