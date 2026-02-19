@@ -1,8 +1,10 @@
 import {
     Entity, PrimaryGeneratedColumn, Column,
     ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
+    OneToMany,
 } from 'typeorm';
 import { Criterio } from './criterio.entity';
+import { CalificacionDetalle } from 'src/scores/domain/entities/calificacion-detalle.entity';
 
 @Entity('escalas')
 export class Escala {
@@ -21,9 +23,11 @@ export class Escala {
     @ManyToOne(() => Criterio, (criterio) => criterio.escalas)
     @JoinColumn({ name: 'criterio_id' })
     criterio: Criterio;
-
     @Column()
     criterio_id: string;
+
+    @OneToMany(() => CalificacionDetalle, calificacionDetalle => calificacionDetalle.escala)
+    calificacionDetalles: CalificacionDetalle[];
 
     @CreateDateColumn()
     created_at: Date;

@@ -26,8 +26,4 @@ export class CreateUserDto {
     @IsString()
     @IsOptional()
     especialidad?: string;
-
-    @IsString()
-    @IsOptional()
-    matricula?: string;
 }

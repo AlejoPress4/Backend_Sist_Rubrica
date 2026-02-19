@@ -6,5 +6,5 @@ export declare class CreateUserDto {
     apellido: string;
     rol: UserRole;
     especialidad?: string;
-    matricula?: string;
+
 }

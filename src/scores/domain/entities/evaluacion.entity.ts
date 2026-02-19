@@ -19,14 +19,12 @@ export class Evaluacion {
     @ManyToOne(() => Asignatura, { eager: true })
     @JoinColumn({ name: 'asignatura_id' })
     asignatura: Asignatura;
-
     @Column()
     asignatura_id: string;
 
     @ManyToOne(() => Rubrica, { eager: true })
     @JoinColumn({ name: 'rubrica_id' })
     rubrica: Rubrica;
-
     @Column()
     rubrica_id: string;
 

@@ -16,13 +16,10 @@ export class Criterio {
     @Column({ nullable: true })
     descripcion: string;
 
-    @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
-    ponderacion: number;
 
     @ManyToOne(() => Rubrica, (rubrica) => rubrica.criterios)
     @JoinColumn({ name: 'rubrica_id' })
     rubrica: Rubrica;
-
     @Column()
     rubrica_id: string;
 

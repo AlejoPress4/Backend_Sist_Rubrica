@@ -16,7 +16,7 @@ export class PlanEstudio {
     @Column({ nullable: true })
     anio: number;
 
-    @ManyToOne(() => Carrera, { eager: true })
+    @ManyToOne(() => Carrera, carrera => carrera.planes)
     @JoinColumn({ name: 'carrera_id' })
     carrera: Carrera;
 

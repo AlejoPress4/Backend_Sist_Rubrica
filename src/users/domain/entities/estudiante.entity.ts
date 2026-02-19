@@ -1,8 +1,11 @@
 import {
     Entity, PrimaryGeneratedColumn, Column,
     OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
+    OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
+import { Inscripcion } from '../../../courses/domain/entities/inscripcion.entity';
+import { Matricula } from '../../../academic/domain/entities/matricula.entity';
 
 @Entity('estudiantes')
 export class Estudiante {
@@ -24,6 +27,13 @@ export class Estudiante {
 
     @Column()
     user_id: string;
+
+    // Relación: Un estudiante tiene muchas inscripciones a grupos
+    @OneToMany(() => Inscripcion, (inscripcion) => inscripcion.estudiante)
+    inscripciones: Inscripcion[];
+
+    @OneToMany(() => Matricula, matricula => matricula.estudiante)
+    matriculas: Matricula[];
 
     @CreateDateColumn()
     created_at: Date;

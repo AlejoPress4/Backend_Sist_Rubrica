@@ -10,4 +10,11 @@ export enum EstadoInscripcion {
     RETIRADO = 'retirado',
 }
 
+export enum EstadoMatricula {
+    ACTIVO = 'activo',
+    GRADUADO = 'graduado',
+    RETIRADO = 'retirado',
+    SUSPENDIDO = 'suspendido',
+}
+
 export const ROLES_KEY = 'roles';

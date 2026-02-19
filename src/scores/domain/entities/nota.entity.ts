@@ -2,8 +2,8 @@ import {
     Entity, PrimaryGeneratedColumn, Column,
     ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
-import { Estudiante } from '../../../users/domain/entities/estudiante.entity';
-import { Evaluacion } from './evaluacion.entity';
+import { Inscripcion } from '../../../courses/domain/entities/inscripcion.entity';
+import { Rubrica } from 'src/rubrics/domain/entities/rubrica.entity';
 
 @Entity('notas')
 export class Nota {
@@ -16,19 +16,22 @@ export class Nota {
     @Column({ nullable: true })
     observaciones: string;
 
-    @ManyToOne(() => Estudiante, { eager: true })
-    @JoinColumn({ name: 'estudiante_id' })
-    estudiante: Estudiante;
-
     @Column()
     estudiante_id: string;
 
-    @ManyToOne(() => Evaluacion, { eager: true })
-    @JoinColumn({ name: 'evaluacion_id' })
-    evaluacion: Evaluacion;
 
+    //Relaciones
+    @ManyToOne(() => Inscripcion, inscripcion => inscripcion.notas)
+    @JoinColumn({ name: 'inscripcion_id' })
+    inscripcion: Inscripcion;
     @Column()
-    evaluacion_id: string;
+    inscripcion_id: string;
+    
+    @ManyToOne(() => Rubrica, rubrica => rubrica.notas)
+    @JoinColumn({ name: 'rubrica_id' })
+    rubrica: Rubrica
+    @Column()
+    rubrica_id: string;
 
     @CreateDateColumn()
     created_at: Date;

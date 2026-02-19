@@ -32,6 +32,7 @@ export class Docente {
     @Column()
     user_id: string;
 
+    //Relación hacia Grupo
     @OneToMany(() => Grupo, grupo => grupo.docente, { eager: true })
     grupos: Grupo[];
 

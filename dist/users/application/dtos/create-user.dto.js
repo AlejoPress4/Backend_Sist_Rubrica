@@ -19,7 +19,6 @@ class CreateUserDto {
     apellido;
     rol;
     especialidad;
-    matricula;
 }
 exports.CreateUserDto = CreateUserDto;
 __decorate([
