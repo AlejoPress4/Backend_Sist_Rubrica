@@ -17,22 +17,22 @@ export class PlanEstudio {
     anio: number;
 
     @ManyToOne(() => Carrera, { eager: true })
-    @JoinColumn({ name: 'carreraId' })
+    @JoinColumn({ name: 'carrera_id' })
     carrera: Carrera;
 
     @Column()
-    carreraId: string;
+    carrera_id: string;
 
     @ManyToOne(() => Asignatura, { eager: true })
-    @JoinColumn({ name: 'asignaturaId' })
+    @JoinColumn({ name: 'asignatura_id' })
     asignatura: Asignatura;
 
     @Column()
-    asignaturaId: string;
+    asignatura_id: string;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

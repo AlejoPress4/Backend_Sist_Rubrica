@@ -41,31 +41,31 @@ export class RubricsController {
 
     // --- Criterios ---
 
-    @Post(':rubricaId/criterios')
+    @Post(':rubrica_id/criterios')
     async createCriterio(
-        @Param('rubricaId') rubricaId: string,
+        @Param('rubrica_id') rubrica_id: string,
         @Body() dto: CreateCriterioDto,
     ) {
-        // TODO: Delegate to rubricsService
+        return this.rubricsService.createCriterio(rubrica_id, dto);
     }
 
-    @Get(':rubricaId/criterios')
-    async findCriteriosByRubrica(@Param('rubricaId') rubricaId: string) {
-        // TODO: Delegate to rubricsService
+    @Get(':rubrica_id/criterios')
+    async findCriteriosByRubrica(@Param('rubrica_id') rubrica_id: string) {
+        return this.rubricsService.findCriteriosByRubrica(rubrica_id);
     }
 
     // --- Escalas ---
 
-    @Post('criterios/:criterioId/escalas')
+    @Post('criterios/:criterio_id/escalas')
     async createEscala(
-        @Param('criterioId') criterioId: string,
+        @Param('criterio_id') criterio_id: string,
         @Body() dto: CreateEscalaDto,
     ) {
-        // TODO: Delegate to rubricsService
+        return this.rubricsService.createEscala(criterio_id, dto);
     }
 
-    @Get('criterios/:criterioId/escalas')
-    async findEscalasByCriterio(@Param('criterioId') criterioId: string) {
-        // TODO: Delegate to rubricsService
+    @Get('criterios/:criterio_id/escalas')
+    async findEscalasByCriterio(@Param('criterio_id') criterio_id: string) {
+        return this.rubricsService.findEscalasByCriterio(criterio_id);
     }
 }

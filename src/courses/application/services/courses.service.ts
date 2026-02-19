@@ -53,7 +53,7 @@ export class CoursesService implements ICoursesService {
         throw new Error('Method not implemented.');
     }
 
-    async findInscripcionesByGrupo(grupoId: string): Promise<Inscripcion[]> {
+    async findInscripcionesByGrupo(grupo_id: string): Promise<Inscripcion[]> {
         // TODO: Implement
         throw new Error('Method not implemented.');
     }

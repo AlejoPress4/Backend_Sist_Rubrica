@@ -12,15 +12,18 @@ export class User {
     @Column()
     password: string;
 
+    @Column()
+    codigo: number;
+
     @Column({ type: 'enum', enum: UserRole })
     rol: UserRole;
 
     @Column({ default: true })
-    isActive: boolean;
+    is_active: boolean;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

@@ -19,15 +19,15 @@ export class Escala {
     valor: number;
 
     @ManyToOne(() => Criterio, (criterio) => criterio.escalas)
-    @JoinColumn({ name: 'criterioId' })
+    @JoinColumn({ name: 'criterio_id' })
     criterio: Criterio;
 
     @Column()
-    criterioId: string;
+    criterio_id: string;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

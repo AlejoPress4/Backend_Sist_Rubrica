@@ -11,28 +11,28 @@ export class Nota {
     id: string;
 
     @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
-    notaFinal: number;
+    nota_final: number;
 
     @Column({ nullable: true })
     observaciones: string;
 
     @ManyToOne(() => Estudiante, { eager: true })
-    @JoinColumn({ name: 'estudianteId' })
+    @JoinColumn({ name: 'estudiante_id' })
     estudiante: Estudiante;
 
     @Column()
-    estudianteId: string;
+    estudiante_id: string;
 
     @ManyToOne(() => Evaluacion, { eager: true })
-    @JoinColumn({ name: 'evaluacionId' })
+    @JoinColumn({ name: 'evaluacion_id' })
     evaluacion: Evaluacion;
 
     @Column()
-    evaluacionId: string;
+    evaluacion_id: string;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

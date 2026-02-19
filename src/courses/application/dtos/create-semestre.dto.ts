@@ -1,17 +1,20 @@
-import { IsNotEmpty, IsOptional, IsString, IsDateString, IsBoolean } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsBoolean, IsDate } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateSemestreDto {
     @IsString()
     @IsNotEmpty()
     nombre: string;
 
-    @IsDateString()
     @IsOptional()
-    fechaInicio?: string;
+    @Type(() => Date)
+    @IsDate()
+    fecha_inicio?: Date;
 
-    @IsDateString()
     @IsOptional()
-    fechaFin?: string;
+    @Type(() => Date)
+    @IsDate()
+    fecha_fin?: Date;
 
     @IsBoolean()
     @IsOptional()

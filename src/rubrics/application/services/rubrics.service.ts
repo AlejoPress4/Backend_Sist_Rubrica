@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { Rubrica } from '../../domain/entities/rubrica.entity';
 import { Criterio } from '../../domain/entities/criterio.entity';
 import { Escala } from '../../domain/entities/escala.entity';
+import { CreateCriterioDto } from '../dtos/create-criterio.dto';
+import { CreateEscalaDto } from '../dtos/create-escala.dto';
 import { IRubricsService } from '../../domain/interfaces/rubrics-service.interface';
 
 @Injectable()
@@ -50,24 +52,30 @@ export class RubricsService implements IRubricsService {
 
     // --- Criterios ---
 
-    async createCriterio(data: Partial<Criterio>): Promise<Criterio> {
-        // TODO: Implement
-        throw new Error('Method not implemented.');
+    async createCriterio(rubrica_id: string, data: CreateCriterioDto): Promise<Criterio> {
+        const criterio = this.criterioRepository.create({
+            ...data,
+            rubrica: { id: rubrica_id } as any,
+        });
+        return this.criterioRepository.save(criterio);
     }
 
-    async findCriteriosByRubrica(rubricaId: string): Promise<Criterio[]> {
+    async findCriteriosByRubrica(rubrica_id: string): Promise<Criterio[]> {
         // TODO: Implement
         throw new Error('Method not implemented.');
     }
 
     // --- Escalas ---
 
-    async createEscala(data: Partial<Escala>): Promise<Escala> {
-        // TODO: Implement
-        throw new Error('Method not implemented.');
+    async createEscala(criterio_id: string, data: CreateEscalaDto): Promise<Escala> {
+        const escala = this.escalaRepository.create({
+            ...data,
+            criterio: { id: criterio_id } as any,
+        });
+        return this.escalaRepository.save(escala);
     }
 
-    async findEscalasByCriterio(criterioId: string): Promise<Escala[]> {
+    async findEscalasByCriterio(criterio_id: string): Promise<Escala[]> {
         // TODO: Implement
         throw new Error('Method not implemented.');
     }

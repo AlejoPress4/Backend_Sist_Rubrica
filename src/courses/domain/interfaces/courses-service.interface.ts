@@ -4,8 +4,11 @@ import { Semestre } from '../entities/semestre.entity';
 
 export interface ICoursesService {
     // Semestres
-    createSemestre(data: Partial<Semestre>): Promise<Semestre>;
-    findAllSemestres(): Promise<Semestre[]>;
+    create(dto: CreateSemestreDto): Promise<Semestre>;
+    findAll(): Promise<Semestre[]>;
+    findById(id: string): Promise<Semestre>;
+    update(id: string, dto: UpdateSemestreDto): Promise<Semestre>;
+    remove(id: string): Promise<void>;
 
     // Grupos
     createGrupo(data: Partial<Grupo>): Promise<Grupo>;
@@ -14,5 +17,5 @@ export interface ICoursesService {
 
     // Inscripciones
     createInscripcion(data: Partial<Inscripcion>): Promise<Inscripcion>;
-    findInscripcionesByGrupo(grupoId: string): Promise<Inscripcion[]>;
+    findInscripcionesByGrupo(grupo_id: string): Promise<Inscripcion[]>;
 }

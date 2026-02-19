@@ -1,8 +1,9 @@
 import {
     Entity, PrimaryGeneratedColumn, Column,
-    OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
+    OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToMany
 } from 'typeorm';
 import { User } from './user.entity';
+import { Grupo } from '../../../courses/domain/entities/grupo.entity';
 
 @Entity('docentes')
 export class Docente {
@@ -16,18 +17,27 @@ export class Docente {
     apellido: string;
 
     @Column({ nullable: true })
+    telefono: string;
+
+    @Column({ nullable: true })
+    cedula: string;
+
+    @Column({ nullable: true })
     especialidad: string;
 
     @OneToOne(() => User, { eager: true })
-    @JoinColumn({ name: 'userId' })
+    @JoinColumn({ name: 'user_id' })
     user: User;
 
     @Column()
-    userId: string;
+    user_id: string;
+
+    @OneToMany(() => Grupo, grupo => grupo.docente, { eager: true })
+    grupos: Grupo[];
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

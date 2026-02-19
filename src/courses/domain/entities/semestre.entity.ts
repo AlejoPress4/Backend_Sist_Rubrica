@@ -1,25 +1,33 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Grupo } from './grupo.entity';
 @Entity('semestres')
 export class Semestre {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @Column({ nullable: true })
+    fecha_inicio: Date;
+
+    @Column({ nullable: true })
+    fecha_fin: Date;
+
+    //Atributos
     @Column()
     nombre: string;
 
-    @Column({ nullable: true })
-    fechaInicio: Date;
-
-    @Column({ nullable: true })
-    fechaFin: Date;
+    @Column()
+    codigo: string;
 
     @Column({ default: true })
-    activo: boolean;
+    estado: boolean;
+    
+    //Relacion hacia Grupo
+    @OneToMany(()=> Grupo, (grupo) => grupo.semestre)
+    grupos: Grupo[];
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

@@ -15,5 +15,5 @@ export class CreateCriterioDto {
 
     @IsUUID()
     @IsNotEmpty()
-    rubricaId: string;
+    rubrica_id: string;
 }

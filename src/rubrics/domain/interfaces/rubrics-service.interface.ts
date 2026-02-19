@@ -1,6 +1,8 @@
 import { Rubrica } from '../entities/rubrica.entity';
 import { Criterio } from '../entities/criterio.entity';
 import { Escala } from '../entities/escala.entity';
+import { CreateCriterioDto } from '../../application/dtos/create-criterio.dto';
+import { CreateEscalaDto } from '../../application/dtos/create-escala.dto';
 
 export interface IRubricsService {
     // Rúbricas
@@ -11,10 +13,18 @@ export interface IRubricsService {
     removeRubrica(id: string): Promise<void>;
 
     // Criterios
-    createCriterio(data: Partial<Criterio>): Promise<Criterio>;
-    findCriteriosByRubrica(rubricaId: string): Promise<Criterio[]>;
+    createCriterio(rubrica_id: string, data: CreateCriterioDto): Promise<Criterio>;
+    findCriteriosByRubrica(rubrica_id: string): Promise<Criterio[]>;
 
     // Escalas
-    createEscala(data: Partial<Escala>): Promise<Escala>;
-    findEscalasByCriterio(criterioId: string): Promise<Escala[]>;
+    createEscala(criterio_id: string, data: CreateEscalaDto): Promise<Escala>;
+    findEscalasByCriterio(criterio_id: string): Promise<Escala[]>;
 }
+
+
+
+
+//return this.rubricsService.createCriterio({ ...dto, rubrica: { id: rubricaId } as any });
+
+
+//return this.rubricsService.createCriterio(rubricaId, dto);

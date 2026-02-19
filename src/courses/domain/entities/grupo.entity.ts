@@ -14,30 +14,30 @@ export class Grupo {
     @Column({ nullable: true })
     nombre: string;
 
-    @ManyToOne(() => Docente, { eager: true })
-    @JoinColumn({ name: 'docenteId' })
+    @ManyToOne(() => Docente, docente => docente.grupos, { eager: true })
+    @JoinColumn({ name: 'docente_id' })
     docente: Docente;
 
     @Column()
-    docenteId: string;
+    docente_id: string;
 
-    @ManyToOne(() => Asignatura, { eager: true })
-    @JoinColumn({ name: 'asignaturaId' })
+    @ManyToOne(() => Asignatura, asignatura => asignatura.grupos, { eager: true })
+    @JoinColumn({ name: 'asignatura_id' })
     asignatura: Asignatura;
 
     @Column()
-    asignaturaId: string;
+    asignatura_id: string;
 
-    @ManyToOne(() => Semestre, { eager: true })
-    @JoinColumn({ name: 'semestreId' })
+    @ManyToOne(() => Semestre, semestre => semestre.grupos, { eager: true })
+    @JoinColumn({ name: 'semestre_id' })
     semestre: Semestre;
 
     @Column()
-    semestreId: string;
+    semestre_id: string;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

@@ -18,29 +18,29 @@ export class CalificacionDetalle {
     comentario: string;
 
     @ManyToOne(() => Nota)
-    @JoinColumn({ name: 'notaId' })
+    @JoinColumn({ name: 'nota_id' })
     nota: Nota;
 
     @Column()
-    notaId: string;
+    nota_id: string;
 
     @ManyToOne(() => Criterio, { eager: true })
-    @JoinColumn({ name: 'criterioId' })
+    @JoinColumn({ name: 'criterio_id' })
     criterio: Criterio;
 
     @Column()
-    criterioId: string;
+    criterio_id: string;
 
     @ManyToOne(() => Escala, { eager: true, nullable: true })
-    @JoinColumn({ name: 'escalaId' })
+    @JoinColumn({ name: 'escala_id' })
     escala: Escala;
 
     @Column({ nullable: true })
-    escalaId: string;
+    escala_id: string;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

@@ -16,18 +16,18 @@ export class Estudiante {
     apellido: string;
 
     @Column({ nullable: true })
-    matricula: string;
-
+    cedula: string;
+    
     @OneToOne(() => User, { eager: true })
-    @JoinColumn({ name: 'userId' })
+    @JoinColumn({ name: 'user_id' })
     user: User;
 
     @Column()
-    userId: string;
+    user_id: string;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

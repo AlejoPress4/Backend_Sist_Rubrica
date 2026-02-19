@@ -7,13 +7,13 @@ export class CreateGrupoDto {
 
     @IsUUID()
     @IsNotEmpty()
-    docenteId: string;
+    docente_id: string;
 
     @IsUUID()
     @IsNotEmpty()
-    asignaturaId: string;
+    asignatura_id: string;
 
     @IsUUID()
     @IsNotEmpty()
-    semestreId: string;
+    semestre_id: string;
 }

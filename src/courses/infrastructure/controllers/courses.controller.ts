@@ -12,7 +12,7 @@ export class CoursesController {
 
     @Post('semestres')
     async createSemestre(@Body() dto: CreateSemestreDto) {
-        // TODO: Delegate to coursesService
+        return this.coursesService.createSemestre(dto);
     }
 
     @Get('semestres')
@@ -34,7 +34,7 @@ export class CoursesController {
 
     @Get('grupos/:id')
     async findGrupoById(@Param('id') id: string) {
-        // TODO: Delegate to coursesService
+        return this.coursesService.findGrupoById(id);
     }
 
     // --- Inscripciones ---
@@ -44,8 +44,8 @@ export class CoursesController {
         // TODO: Delegate to coursesService
     }
 
-    @Get('grupos/:grupoId/inscripciones')
-    async findInscripcionesByGrupo(@Param('grupoId') grupoId: string) {
-        // TODO: Delegate to coursesService
+    @Get('grupos/:grupo_id/inscripciones')
+    async findInscripcionesByGrupo(@Param('grupo_id') grupo_id: string) {
+        return this.coursesService.findInscripcionesByGrupo(grupo_id);
     }
 }

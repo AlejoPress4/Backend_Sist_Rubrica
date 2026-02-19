@@ -20,18 +20,18 @@ export class Criterio {
     ponderacion: number;
 
     @ManyToOne(() => Rubrica, (rubrica) => rubrica.criterios)
-    @JoinColumn({ name: 'rubricaId' })
+    @JoinColumn({ name: 'rubrica_id' })
     rubrica: Rubrica;
 
     @Column()
-    rubricaId: string;
+    rubrica_id: string;
 
     @OneToMany(() => Escala, (escala) => escala.criterio)
     escalas: Escala[];
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

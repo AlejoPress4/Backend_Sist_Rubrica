@@ -12,25 +12,25 @@ export class Inscripcion {
     id: string;
 
     @ManyToOne(() => Estudiante, { eager: true })
-    @JoinColumn({ name: 'estudianteId' })
+    @JoinColumn({ name: 'estudiante_id' })
     estudiante: Estudiante;
 
     @Column()
-    estudianteId: string;
+    estudiante_id: string;
 
     @ManyToOne(() => Grupo, { eager: true })
-    @JoinColumn({ name: 'grupoId' })
+    @JoinColumn({ name: 'grupo_id' })
     grupo: Grupo;
 
     @Column()
-    grupoId: string;
+    grupo_id: string;
 
     @Column({ type: 'enum', enum: EstadoInscripcion, default: EstadoInscripcion.ACTIVO })
     estado: EstadoInscripcion;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

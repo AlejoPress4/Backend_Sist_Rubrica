@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateEscalaDto {
     @IsString()
@@ -9,11 +10,12 @@ export class CreateEscalaDto {
     @IsOptional()
     descripcion?: string;
 
-    @IsNumber()
     @IsOptional()
+    @IsNumber()
+    @Type(() => Number)
     valor?: number;
 
     @IsUUID()
     @IsNotEmpty()
-    criterioId: string;
+    criterio_id: string;
 }

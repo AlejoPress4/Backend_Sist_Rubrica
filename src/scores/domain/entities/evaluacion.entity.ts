@@ -17,22 +17,22 @@ export class Evaluacion {
     descripcion: string;
 
     @ManyToOne(() => Asignatura, { eager: true })
-    @JoinColumn({ name: 'asignaturaId' })
+    @JoinColumn({ name: 'asignatura_id' })
     asignatura: Asignatura;
 
     @Column()
-    asignaturaId: string;
+    asignatura_id: string;
 
     @ManyToOne(() => Rubrica, { eager: true })
-    @JoinColumn({ name: 'rubricaId' })
+    @JoinColumn({ name: 'rubrica_id' })
     rubrica: Rubrica;
 
     @Column()
-    rubricaId: string;
+    rubrica_id: string;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

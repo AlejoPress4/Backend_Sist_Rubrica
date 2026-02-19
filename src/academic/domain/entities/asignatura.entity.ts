@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Grupo } from '../../../courses/domain/entities/grupo.entity';
 
 @Entity('asignaturas')
 export class Asignatura {
@@ -17,9 +18,12 @@ export class Asignatura {
     @Column({ default: 0 })
     creditos: number;
 
+    @OneToMany(() => Grupo, grupo => grupo.asignatura)
+    grupos: Grupo[];
+
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

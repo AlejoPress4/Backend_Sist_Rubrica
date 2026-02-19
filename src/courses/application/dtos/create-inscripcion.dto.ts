@@ -3,9 +3,9 @@ import { IsNotEmpty, IsUUID } from 'class-validator';
 export class CreateInscripcionDto {
     @IsUUID()
     @IsNotEmpty()
-    estudianteId: string;
+    estudiante_id: string;
 
     @IsUUID()
     @IsNotEmpty()
-    grupoId: string;
+    grupo_id: string;
 }
