@@ -15,7 +15,7 @@ export class User {
     @Column()
     codigo: number;
 
-    @Column({ type: 'enum', enum: UserRole })
+    @Column({ type: 'simple-enum', enum: UserRole })
     rol: UserRole;
 
     @Column({ default: true })

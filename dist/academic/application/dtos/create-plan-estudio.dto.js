@@ -14,8 +14,8 @@ const class_validator_1 = require("class-validator");
 class CreatePlanEstudioDto {
     nombre;
     anio;
-    carreraId;
-    asignaturaId;
+    carrera_id;
+    asignatura_id;
 }
 exports.CreatePlanEstudioDto = CreatePlanEstudioDto;
 __decorate([
@@ -32,10 +32,10 @@ __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreatePlanEstudioDto.prototype, "carreraId", void 0);
+], CreatePlanEstudioDto.prototype, "carrera_id", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreatePlanEstudioDto.prototype, "asignaturaId", void 0);
+], CreatePlanEstudioDto.prototype, "asignatura_id", void 0);
 //# sourceMappingURL=create-plan-estudio.dto.js.map

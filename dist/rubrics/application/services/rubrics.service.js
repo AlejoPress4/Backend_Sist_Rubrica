@@ -28,9 +28,9 @@ let RubricsService = class RubricsService {
         this.criterioRepository = criterioRepository;
         this.escalaRepository = escalaRepository;
     }
-    async createRubrica(data) {
-        const nuevaRubrica = this.rubricaRepository.create(data);
-        return this.rubricaRepository.save(nuevaRubrica);
+    async createRubrica(dto) {
+        const rubrica = this.rubricaRepository.create(dto);
+        return this.rubricaRepository.save(rubrica);
     }
     async findAllRubricas() {
         return this.rubricaRepository.find();
@@ -38,31 +38,75 @@ let RubricsService = class RubricsService {
     async findRubricaById(id) {
         return this.rubricaRepository.findOne({
             where: { id },
-            relations: ['criterios'],
+            relations: ['criterios', 'criterios.escalas'],
         });
     }
-    async updateRubrica(id, data) {
-        await this.rubricaRepository.update(id, data);
+    async updateRubrica(id, dto) {
         const rubrica = await this.findRubricaById(id);
         if (!rubrica) {
-            throw new common_1.NotFoundException(`Rubrica with ID ${id} not found`);
+            throw new common_1.NotFoundException(`Rúbrica con ID ${id} no encontrada`);
         }
-        return rubrica;
+        Object.assign(rubrica, dto);
+        return this.rubricaRepository.save(rubrica);
     }
     async removeRubrica(id) {
-        await this.rubricaRepository.delete(id);
+        const rubrica = await this.findRubricaById(id);
+        if (!rubrica) {
+            throw new common_1.NotFoundException(`Rúbrica con ID ${id} no encontrada`);
+        }
+        await this.rubricaRepository.remove(rubrica);
     }
-    async createCriterio(data) {
-        throw new Error('Method not implemented.');
+    async createCriterio(dto) {
+        const criterio = this.criterioRepository.create(dto);
+        return this.criterioRepository.save(criterio);
     }
-    async findCriteriosByRubrica(rubricaId) {
-        throw new Error('Method not implemented.');
+    async findCriteriosByRubrica(rubrica_id) {
+        return this.criterioRepository.find({
+            where: { rubrica_id },
+            relations: ['escalas'],
+        });
     }
-    async createEscala(data) {
-        throw new Error('Method not implemented.');
+    async findCriterioById(id) {
+        const criterio = await this.criterioRepository.findOne({
+            where: { id },
+            relations: ['escalas'],
+        });
+        if (!criterio) {
+            throw new common_1.NotFoundException(`Criterio con ID ${id} no encontrado`);
+        }
+        return criterio;
     }
-    async findEscalasByCriterio(criterioId) {
-        throw new Error('Method not implemented.');
+    async updateCriterio(id, dto) {
+        const criterio = await this.findCriterioById(id);
+        Object.assign(criterio, dto);
+        return this.criterioRepository.save(criterio);
+    }
+    async removeCriterio(id) {
+        const criterio = await this.findCriterioById(id);
+        await this.criterioRepository.remove(criterio);
+    }
+    async createEscala(dto) {
+        const escala = this.escalaRepository.create(dto);
+        return this.escalaRepository.save(escala);
+    }
+    async findEscalasByCriterio(criterio_id) {
+        return this.escalaRepository.find({ where: { criterio_id } });
+    }
+    async findEscalaById(id) {
+        const escala = await this.escalaRepository.findOne({ where: { id } });
+        if (!escala) {
+            throw new common_1.NotFoundException(`Escala con ID ${id} no encontrada`);
+        }
+        return escala;
+    }
+    async updateEscala(id, dto) {
+        const escala = await this.findEscalaById(id);
+        Object.assign(escala, dto);
+        return this.escalaRepository.save(escala);
+    }
+    async removeEscala(id) {
+        const escala = await this.findEscalaById(id);
+        await this.escalaRepository.remove(escala);
     }
 };
 exports.RubricsService = RubricsService;

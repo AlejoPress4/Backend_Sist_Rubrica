@@ -11,11 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateEscalaDto = void 0;
 const class_validator_1 = require("class-validator");
+const class_transformer_1 = require("class-transformer");
 class CreateEscalaDto {
     nombre;
     descripcion;
     valor;
-    criterioId;
+    criterio_id;
 }
 exports.CreateEscalaDto = CreateEscalaDto;
 __decorate([
@@ -29,13 +30,14 @@ __decorate([
     __metadata("design:type", String)
 ], CreateEscalaDto.prototype, "descripcion", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
     __metadata("design:type", Number)
 ], CreateEscalaDto.prototype, "valor", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateEscalaDto.prototype, "criterioId", void 0);
+], CreateEscalaDto.prototype, "criterio_id", void 0);
 //# sourceMappingURL=create-escala.dto.js.map

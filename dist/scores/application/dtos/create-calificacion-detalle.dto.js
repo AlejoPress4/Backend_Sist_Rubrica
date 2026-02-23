@@ -14,9 +14,7 @@ const class_validator_1 = require("class-validator");
 class CreateCalificacionDetalleDto {
     puntaje;
     comentario;
-    notaId;
-    criterioId;
-    escalaId;
+    escala_id;
 }
 exports.CreateCalificacionDetalleDto = CreateCalificacionDetalleDto;
 __decorate([
@@ -31,17 +29,7 @@ __decorate([
 ], CreateCalificacionDetalleDto.prototype, "comentario", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateCalificacionDetalleDto.prototype, "notaId", void 0);
-__decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateCalificacionDetalleDto.prototype, "criterioId", void 0);
-__decorate([
-    (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateCalificacionDetalleDto.prototype, "escalaId", void 0);
+], CreateCalificacionDetalleDto.prototype, "escala_id", void 0);
 //# sourceMappingURL=create-calificacion-detalle.dto.js.map

@@ -1,6 +1,7 @@
 export declare class CreateNotaDto {
-    notaFinal?: number;
+    nota_final?: number;
     observaciones?: string;
-    estudianteId: string;
-    evaluacionId: string;
+    estudiante_id: string;
+    inscripcion_id: string;
+    rubrica_id: string;
 }

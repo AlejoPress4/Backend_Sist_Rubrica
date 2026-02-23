@@ -3,8 +3,9 @@ export declare class User {
     id: string;
     email: string;
     password: string;
+    codigo: number;
     rol: UserRole;
-    isActive: boolean;
-    createdAt: Date;
-    updatedAt: Date;
+    is_active: boolean;
+    created_at: Date;
+    updated_at: Date;
 }

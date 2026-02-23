@@ -5,9 +5,9 @@ export declare class Evaluacion {
     nombre: string;
     descripcion: string;
     asignatura: Asignatura;
-    asignaturaId: string;
+    asignatura_id: string;
     rubrica: Rubrica;
-    rubricaId: string;
-    createdAt: Date;
-    updatedAt: Date;
+    rubrica_id: string;
+    created_at: Date;
+    updated_at: Date;
 }

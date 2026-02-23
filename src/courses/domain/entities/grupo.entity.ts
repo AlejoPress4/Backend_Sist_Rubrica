@@ -14,24 +14,24 @@ export class Grupo {
     @Column({ nullable: true })
     nombre: string;
 
+    @Column()
+    codigo_grupo: string;
+    
     @ManyToOne(() => Docente, docente => docente.grupos, { eager: true })
     @JoinColumn({ name: 'docente_id' })
     docente: Docente;
-
-    @Column()
-    docente_id: string;
+    @Column({ type: 'int' })
+    docente_id: number;
 
     @ManyToOne(() => Asignatura, asignatura => asignatura.grupos, { eager: true })
     @JoinColumn({ name: 'asignatura_id' })
     asignatura: Asignatura;
-
     @Column()
     asignatura_id: string;
 
     @ManyToOne(() => Semestre, semestre => semestre.grupos, { eager: true })
     @JoinColumn({ name: 'semestre_id' })
     semestre: Semestre;
-
     @Column()
     semestre_id: string;
 

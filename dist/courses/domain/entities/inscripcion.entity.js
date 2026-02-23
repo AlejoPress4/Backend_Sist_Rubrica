@@ -14,15 +14,18 @@ const typeorm_1 = require("typeorm");
 const estudiante_entity_1 = require("../../../users/domain/entities/estudiante.entity");
 const grupo_entity_1 = require("./grupo.entity");
 const constants_1 = require("../../../common/constants/constants");
+const nota_entity_1 = require("../../../scores/domain/entities/nota.entity");
 let Inscripcion = class Inscripcion {
     id;
-    estudiante;
-    estudianteId;
-    grupo;
-    grupoId;
+    fecha_inscripcion;
     estado;
-    createdAt;
-    updatedAt;
+    estudiante;
+    estudiante_id;
+    grupo;
+    grupo_id;
+    notas;
+    created_at;
+    updated_at;
 };
 exports.Inscripcion = Inscripcion;
 __decorate([
@@ -30,35 +33,43 @@ __decorate([
     __metadata("design:type", String)
 ], Inscripcion.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => estudiante_entity_1.Estudiante, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'estudianteId' }),
-    __metadata("design:type", estudiante_entity_1.Estudiante)
-], Inscripcion.prototype, "estudiante", void 0);
-__decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Inscripcion.prototype, "estudianteId", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => grupo_entity_1.Grupo, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'grupoId' }),
-    __metadata("design:type", grupo_entity_1.Grupo)
-], Inscripcion.prototype, "grupo", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Inscripcion.prototype, "grupoId", void 0);
+    __metadata("design:type", Date)
+], Inscripcion.prototype, "fecha_inscripcion", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'enum', enum: constants_1.EstadoInscripcion, default: constants_1.EstadoInscripcion.ACTIVO }),
     __metadata("design:type", String)
 ], Inscripcion.prototype, "estado", void 0);
 __decorate([
+    (0, typeorm_1.ManyToOne)(() => estudiante_entity_1.Estudiante, { eager: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'estudiante_id' }),
+    __metadata("design:type", estudiante_entity_1.Estudiante)
+], Inscripcion.prototype, "estudiante", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Inscripcion.prototype, "estudiante_id", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => grupo_entity_1.Grupo, { eager: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'grupo_id' }),
+    __metadata("design:type", grupo_entity_1.Grupo)
+], Inscripcion.prototype, "grupo", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Inscripcion.prototype, "grupo_id", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => nota_entity_1.Nota, nota => nota.inscripcion, { eager: true }),
+    __metadata("design:type", Array)
+], Inscripcion.prototype, "notas", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Inscripcion.prototype, "createdAt", void 0);
+], Inscripcion.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Inscripcion.prototype, "updatedAt", void 0);
+], Inscripcion.prototype, "updated_at", void 0);
 exports.Inscripcion = Inscripcion = __decorate([
     (0, typeorm_1.Entity)('inscripciones')
 ], Inscripcion);

@@ -16,8 +16,8 @@ export class Nota {
     @Column({ nullable: true })
     observaciones: string;
 
-    @Column()
-    estudiante_id: string;
+    @Column({ type: 'int' })
+    estudiante_id: number;
 
 
     //Relaciones

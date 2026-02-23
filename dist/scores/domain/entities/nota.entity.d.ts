@@ -1,13 +1,14 @@
-import { Estudiante } from '../../../users/domain/entities/estudiante.entity';
-import { Evaluacion } from './evaluacion.entity';
+import { Inscripcion } from '../../../courses/domain/entities/inscripcion.entity';
+import { Rubrica } from 'src/rubrics/domain/entities/rubrica.entity';
 export declare class Nota {
     id: string;
-    notaFinal: number;
+    nota_final: number;
     observaciones: string;
-    estudiante: Estudiante;
-    estudianteId: string;
-    evaluacion: Evaluacion;
-    evaluacionId: string;
-    createdAt: Date;
-    updatedAt: Date;
+    estudiante_id: string;
+    inscripcion: Inscripcion;
+    inscripcion_id: string;
+    rubrica: Rubrica;
+    rubrica_id: string;
+    created_at: Date;
+    updated_at: Date;
 }

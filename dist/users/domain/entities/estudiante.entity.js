@@ -12,15 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Estudiante = void 0;
 const typeorm_1 = require("typeorm");
 const user_entity_1 = require("./user.entity");
+const inscripcion_entity_1 = require("../../../courses/domain/entities/inscripcion.entity");
+const matricula_entity_1 = require("../../../academic/domain/entities/matricula.entity");
 let Estudiante = class Estudiante {
     id;
     nombre;
     apellido;
-    matricula;
+    cedula;
     user;
-    userId;
-    createdAt;
-    updatedAt;
+    user_id;
+    inscripciones;
+    matriculas;
+    created_at;
+    updated_at;
 };
 exports.Estudiante = Estudiante;
 __decorate([
@@ -38,24 +42,32 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], Estudiante.prototype, "matricula", void 0);
+], Estudiante.prototype, "cedula", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => user_entity_1.User, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'userId' }),
+    (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
     __metadata("design:type", user_entity_1.User)
 ], Estudiante.prototype, "user", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Estudiante.prototype, "userId", void 0);
+], Estudiante.prototype, "user_id", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => inscripcion_entity_1.Inscripcion, (inscripcion) => inscripcion.estudiante),
+    __metadata("design:type", Array)
+], Estudiante.prototype, "inscripciones", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => matricula_entity_1.Matricula, matricula => matricula.estudiante),
+    __metadata("design:type", Array)
+], Estudiante.prototype, "matriculas", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Estudiante.prototype, "createdAt", void 0);
+], Estudiante.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Estudiante.prototype, "updatedAt", void 0);
+], Estudiante.prototype, "updated_at", void 0);
 exports.Estudiante = Estudiante = __decorate([
     (0, typeorm_1.Entity)('estudiantes')
 ], Estudiante);

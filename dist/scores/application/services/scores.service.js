@@ -28,26 +28,86 @@ let ScoresService = class ScoresService {
         this.notaRepository = notaRepository;
         this.calificacionDetalleRepository = calificacionDetalleRepository;
     }
-    async createEvaluacion(data) {
-        throw new Error('Method not implemented.');
+    async createEvaluacion(dto) {
+        const evaluacion = this.evaluacionRepository.create(dto);
+        return this.evaluacionRepository.save(evaluacion);
     }
     async findAllEvaluaciones() {
-        throw new Error('Method not implemented.');
+        return this.evaluacionRepository.find();
     }
     async findEvaluacionById(id) {
-        throw new Error('Method not implemented.');
+        const evaluacion = await this.evaluacionRepository.findOne({ where: { id } });
+        if (!evaluacion) {
+            throw new common_1.NotFoundException(`Evaluación con ID ${id} no encontrada`);
+        }
+        return evaluacion;
     }
-    async createNota(data) {
-        throw new Error('Method not implemented.');
+    async findEvaluacionesByAsignatura(asignatura_id) {
+        return this.evaluacionRepository.find({ where: { asignatura_id } });
     }
-    async findNotasByEvaluacion(evaluacionId) {
-        throw new Error('Method not implemented.');
+    async findEvaluacionesByRubrica(rubrica_id) {
+        return this.evaluacionRepository.find({ where: { rubrica_id } });
     }
-    async createCalificacionDetalle(data) {
-        throw new Error('Method not implemented.');
+    async updateEvaluacion(id, dto) {
+        const evaluacion = await this.findEvaluacionById(id);
+        Object.assign(evaluacion, dto);
+        return this.evaluacionRepository.save(evaluacion);
     }
-    async findDetallesByNota(notaId) {
-        throw new Error('Method not implemented.');
+    async removeEvaluacion(id) {
+        const evaluacion = await this.findEvaluacionById(id);
+        await this.evaluacionRepository.remove(evaluacion);
+    }
+    async createNota(dto) {
+        const nota = this.notaRepository.create(dto);
+        return this.notaRepository.save(nota);
+    }
+    async findAllNotas() {
+        return this.notaRepository.find();
+    }
+    async findNotaById(id) {
+        const nota = await this.notaRepository.findOne({ where: { id } });
+        if (!nota) {
+            throw new common_1.NotFoundException(`Nota con ID ${id} no encontrada`);
+        }
+        return nota;
+    }
+    async findNotasByInscripcion(inscripcion_id) {
+        return this.notaRepository.find({ where: { inscripcion_id } });
+    }
+    async findNotasByEstudiante(estudiante_id) {
+        return this.notaRepository.find({ where: { estudiante_id } });
+    }
+    async updateNota(id, dto) {
+        const nota = await this.findNotaById(id);
+        Object.assign(nota, dto);
+        return this.notaRepository.save(nota);
+    }
+    async removeNota(id) {
+        const nota = await this.findNotaById(id);
+        await this.notaRepository.remove(nota);
+    }
+    async createCalificacionDetalle(dto) {
+        const detalle = this.calificacionDetalleRepository.create(dto);
+        return this.calificacionDetalleRepository.save(detalle);
+    }
+    async findAllDetalles() {
+        return this.calificacionDetalleRepository.find();
+    }
+    async findDetalleById(id) {
+        const detalle = await this.calificacionDetalleRepository.findOne({ where: { id } });
+        if (!detalle) {
+            throw new common_1.NotFoundException(`Calificación Detalle con ID ${id} no encontrado`);
+        }
+        return detalle;
+    }
+    async updateCalificacionDetalle(id, dto) {
+        const detalle = await this.findDetalleById(id);
+        Object.assign(detalle, dto);
+        return this.calificacionDetalleRepository.save(detalle);
+    }
+    async removeCalificacionDetalle(id) {
+        const detalle = await this.findDetalleById(id);
+        await this.calificacionDetalleRepository.remove(detalle);
     }
 };
 exports.ScoresService = ScoresService;

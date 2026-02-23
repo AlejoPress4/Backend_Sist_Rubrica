@@ -11,11 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateSemestreDto = void 0;
 const class_validator_1 = require("class-validator");
+const class_transformer_1 = require("class-transformer");
 class CreateSemestreDto {
     nombre;
-    fechaInicio;
-    fechaFin;
-    activo;
+    codigo;
+    fecha_inicio;
+    fecha_fin;
+    estado;
 }
 exports.CreateSemestreDto = CreateSemestreDto;
 __decorate([
@@ -24,18 +26,25 @@ __decorate([
     __metadata("design:type", String)
 ], CreateSemestreDto.prototype, "nombre", void 0);
 __decorate([
-    (0, class_validator_1.IsDateString)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateSemestreDto.prototype, "fechaInicio", void 0);
+], CreateSemestreDto.prototype, "codigo", void 0);
 __decorate([
-    (0, class_validator_1.IsDateString)(),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateSemestreDto.prototype, "fechaFin", void 0);
+    (0, class_transformer_1.Type)(() => Date),
+    (0, class_validator_1.IsDate)(),
+    __metadata("design:type", Date)
+], CreateSemestreDto.prototype, "fecha_inicio", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_transformer_1.Type)(() => Date),
+    (0, class_validator_1.IsDate)(),
+    __metadata("design:type", Date)
+], CreateSemestreDto.prototype, "fecha_fin", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
-], CreateSemestreDto.prototype, "activo", void 0);
+], CreateSemestreDto.prototype, "estado", void 0);
 //# sourceMappingURL=create-semestre.dto.js.map

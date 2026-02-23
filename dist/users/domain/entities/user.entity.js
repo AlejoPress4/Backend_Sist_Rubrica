@@ -16,10 +16,11 @@ let User = class User {
     id;
     email;
     password;
+    codigo;
     rol;
-    isActive;
-    createdAt;
-    updatedAt;
+    is_active;
+    created_at;
+    updated_at;
 };
 exports.User = User;
 __decorate([
@@ -35,21 +36,25 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], User.prototype, "codigo", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'enum', enum: constants_1.UserRole }),
     __metadata("design:type", String)
 ], User.prototype, "rol", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: true }),
     __metadata("design:type", Boolean)
-], User.prototype, "isActive", void 0);
+], User.prototype, "is_active", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], User.prototype, "createdAt", void 0);
+], User.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], User.prototype, "updatedAt", void 0);
+], User.prototype, "updated_at", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)('users')
 ], User);

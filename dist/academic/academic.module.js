@@ -12,6 +12,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const carrera_entity_1 = require("./domain/entities/carrera.entity");
 const asignatura_entity_1 = require("./domain/entities/asignatura.entity");
 const plan_estudio_entity_1 = require("./domain/entities/plan-estudio.entity");
+const matricula_entity_1 = require("./domain/entities/matricula.entity");
 const academic_service_1 = require("./application/services/academic.service");
 const academic_controller_1 = require("./infrastructure/controllers/academic.controller");
 let AcademicModule = class AcademicModule {
@@ -19,7 +20,7 @@ let AcademicModule = class AcademicModule {
 exports.AcademicModule = AcademicModule;
 exports.AcademicModule = AcademicModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([carrera_entity_1.Carrera, asignatura_entity_1.Asignatura, plan_estudio_entity_1.PlanEstudio])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([carrera_entity_1.Carrera, asignatura_entity_1.Asignatura, plan_estudio_entity_1.PlanEstudio, matricula_entity_1.Matricula])],
         controllers: [academic_controller_1.AcademicController],
         providers: [academic_service_1.AcademicService],
         exports: [academic_service_1.AcademicService],

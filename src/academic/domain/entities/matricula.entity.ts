@@ -17,24 +17,21 @@ export class Matricula {
   id: string;
 
   @Column({ length: 10 })
-  cohorte: string; // "2026", "2025"
+  periodo_ingreso: string; // ej: "2026-1", "2026-2"
 
-  @Column({ type: 'date' })
-  fecha_ingreso: Date;
-
-  @Column({
-    type: 'enum',
-    enum: EstadoMatricula,
-    default: EstadoMatricula.ACTIVO,
+  @Column({ 
+    type: 'simple-enum', 
+    enum: EstadoMatricula, 
+    default: EstadoMatricula.ACTIVO 
   })
-  estado: EstadoMatricula;
-
+  estado_academico: EstadoMatricula;
+  
   // Relaciones
   @ManyToOne(() => Estudiante, (estudiante) => estudiante.matriculas)
   @JoinColumn({ name: 'estudiante_id' })
   estudiante: Estudiante;
-  @Column()
-  estudiante_id: string;
+  @Column({ type: 'int' })
+  estudiante_id: number;
 
   @ManyToOne(() => Carrera, (carrera) => carrera.matriculas)
   @JoinColumn({ name: 'carrera_id' })

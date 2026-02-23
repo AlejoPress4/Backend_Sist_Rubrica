@@ -11,19 +11,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateInscripcionDto = void 0;
 const class_validator_1 = require("class-validator");
+const class_transformer_1 = require("class-transformer");
+const constants_1 = require("../../../common/constants/constants");
 class CreateInscripcionDto {
-    estudianteId;
-    grupoId;
+    estudiante_id;
+    grupo_id;
+    fecha_inscripcion;
+    estado;
 }
 exports.CreateInscripcionDto = CreateInscripcionDto;
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateInscripcionDto.prototype, "estudianteId", void 0);
+], CreateInscripcionDto.prototype, "estudiante_id", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateInscripcionDto.prototype, "grupoId", void 0);
+], CreateInscripcionDto.prototype, "grupo_id", void 0);
+__decorate([
+    (0, class_transformer_1.Type)(() => Date),
+    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Date)
+], CreateInscripcionDto.prototype, "fecha_inscripcion", void 0);
+__decorate([
+    (0, class_validator_1.IsEnum)(constants_1.EstadoInscripcion),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateInscripcionDto.prototype, "estado", void 0);
 //# sourceMappingURL=create-inscripcion.dto.js.map

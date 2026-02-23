@@ -11,9 +11,9 @@ export class CreatePlanEstudioDto {
 
     @IsUUID()
     @IsNotEmpty()
-    carreraId: string;
+    carrera_id: string;
 
     @IsUUID()
     @IsNotEmpty()
-    asignaturaId: string;
+    asignatura_id: string;
 }

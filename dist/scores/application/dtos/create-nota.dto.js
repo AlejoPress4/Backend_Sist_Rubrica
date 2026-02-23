@@ -12,17 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateNotaDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateNotaDto {
-    notaFinal;
+    nota_final;
     observaciones;
-    estudianteId;
-    evaluacionId;
+    estudiante_id;
+    inscripcion_id;
+    rubrica_id;
 }
 exports.CreateNotaDto = CreateNotaDto;
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], CreateNotaDto.prototype, "notaFinal", void 0);
+], CreateNotaDto.prototype, "nota_final", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
@@ -32,10 +33,15 @@ __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateNotaDto.prototype, "estudianteId", void 0);
+], CreateNotaDto.prototype, "estudiante_id", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateNotaDto.prototype, "evaluacionId", void 0);
+], CreateNotaDto.prototype, "inscripcion_id", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateNotaDto.prototype, "rubrica_id", void 0);
 //# sourceMappingURL=create-nota.dto.js.map

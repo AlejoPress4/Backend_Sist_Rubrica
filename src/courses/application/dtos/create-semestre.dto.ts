@@ -6,6 +6,10 @@ export class CreateSemestreDto {
     @IsNotEmpty()
     nombre: string;
 
+    @IsString()
+    @IsNotEmpty()
+    codigo: string;
+
     @IsOptional()
     @Type(() => Date)
     @IsDate()
@@ -18,5 +22,5 @@ export class CreateSemestreDto {
 
     @IsBoolean()
     @IsOptional()
-    activo?: boolean;
+    estado?: boolean;
 }

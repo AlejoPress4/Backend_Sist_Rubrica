@@ -1,11 +1,10 @@
 import {
     Entity, PrimaryGeneratedColumn, Column,
-    ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
+    ManyToOne, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
 import { Estudiante } from '../../../users/domain/entities/estudiante.entity';
 import { Grupo } from './grupo.entity';
 import { EstadoInscripcion } from '../../../common/constants/constants';
-import { OneToMany } from 'typeorm/browser';
 import { Nota } from '../../../scores/domain/entities/nota.entity';
 @Entity('inscripciones')
 export class Inscripcion {
@@ -15,15 +14,15 @@ export class Inscripcion {
     @Column()
     fecha_inscripcion: Date;
 
-    @Column({ type: 'enum', enum: EstadoInscripcion, default: EstadoInscripcion.ACTIVO })
+    @Column({ type: 'simple-enum', enum: EstadoInscripcion, default: EstadoInscripcion.ACTIVO })
     estado: EstadoInscripcion;
 
     //Relaciones
     @ManyToOne(() => Estudiante, { eager: true })
     @JoinColumn({ name: 'estudiante_id' })
     estudiante: Estudiante;
-    @Column()
-    estudiante_id: string;
+    @Column({ type: 'int' })
+    estudiante_id: number;
 
     @ManyToOne(() => Grupo, { eager: true })
     @JoinColumn({ name: 'grupo_id' })

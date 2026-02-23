@@ -9,8 +9,8 @@ import { Matricula } from '../../../academic/domain/entities/matricula.entity';
 
 @Entity('estudiantes')
 export class Estudiante {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     nombre: string;

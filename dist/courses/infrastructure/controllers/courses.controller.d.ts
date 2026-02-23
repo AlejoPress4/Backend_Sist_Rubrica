@@ -1,15 +1,31 @@
 import { CoursesService } from '../../application/services/courses.service';
 import { CreateSemestreDto } from '../../application/dtos/create-semestre.dto';
+import { UpdateSemestreDto } from '../../application/dtos/update-semestre.dto';
 import { CreateGrupoDto } from '../../application/dtos/create-grupo.dto';
+import { UpdateGrupoDto } from '../../application/dtos/update-grupo.dto';
 import { CreateInscripcionDto } from '../../application/dtos/create-inscripcion.dto';
+import { UpdateInscripcionDto } from '../../application/dtos/update-inscripcion.dto';
+import { ApiResponseDto } from '../../../common/dtos/api-response.dto';
 export declare class CoursesController {
     private readonly coursesService;
     constructor(coursesService: CoursesService);
-    createSemestre(dto: CreateSemestreDto): Promise<void>;
-    findAllSemestres(): Promise<void>;
-    createGrupo(dto: CreateGrupoDto): Promise<void>;
-    findAllGrupos(): Promise<void>;
-    findGrupoById(id: string): Promise<void>;
-    createInscripcion(dto: CreateInscripcionDto): Promise<void>;
-    findInscripcionesByGrupo(grupoId: string): Promise<void>;
+    createSemestre(dto: CreateSemestreDto): Promise<ApiResponseDto<import("../../domain/entities/semestre.entity").Semestre>>;
+    findAllSemestres(): Promise<ApiResponseDto<import("../../domain/entities/semestre.entity").Semestre[]>>;
+    findSemestreById(id: string): Promise<ApiResponseDto<import("../../domain/entities/semestre.entity").Semestre>>;
+    updateSemestre(id: string, dto: UpdateSemestreDto): Promise<ApiResponseDto<import("../../domain/entities/semestre.entity").Semestre>>;
+    removeSemestre(id: string): Promise<ApiResponseDto<null>>;
+    createGrupo(dto: CreateGrupoDto): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo>>;
+    findAllGrupos(): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo[]>>;
+    findGrupoById(id: string): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo>>;
+    findGruposBySemestre(semestre_id: string): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo[]>>;
+    findGruposByDocente(docente_id: string): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo[]>>;
+    updateGrupo(id: string, dto: UpdateGrupoDto): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo>>;
+    removeGrupo(id: string): Promise<ApiResponseDto<null>>;
+    createInscripcion(dto: CreateInscripcionDto): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion>>;
+    findAllInscripciones(): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion[]>>;
+    findInscripcionById(id: string): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion>>;
+    findInscripcionesByGrupo(grupo_id: string): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion[]>>;
+    findInscripcionesByEstudiante(estudiante_id: string): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion[]>>;
+    updateInscripcion(id: string, dto: UpdateInscripcionDto): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion>>;
+    removeInscripcion(id: string): Promise<ApiResponseDto<null>>;
 }

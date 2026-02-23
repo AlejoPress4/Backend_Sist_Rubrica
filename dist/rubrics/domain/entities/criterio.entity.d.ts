@@ -4,10 +4,9 @@ export declare class Criterio {
     id: string;
     nombre: string;
     descripcion: string;
-    ponderacion: number;
     rubrica: Rubrica;
-    rubricaId: string;
+    rubrica_id: string;
     escalas: Escala[];
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }

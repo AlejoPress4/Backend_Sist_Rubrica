@@ -1,15 +1,31 @@
 import { ScoresService } from '../../application/services/scores.service';
 import { CreateEvaluacionDto } from '../../application/dtos/create-evaluacion.dto';
+import { UpdateEvaluacionDto } from '../../application/dtos/update-evaluacion.dto';
 import { CreateNotaDto } from '../../application/dtos/create-nota.dto';
+import { UpdateNotaDto } from '../../application/dtos/update-nota.dto';
 import { CreateCalificacionDetalleDto } from '../../application/dtos/create-calificacion-detalle.dto';
+import { UpdateCalificacionDetalleDto } from '../../application/dtos/update-calificacion-detalle.dto';
+import { ApiResponseDto } from '../../../common/dtos/api-response.dto';
 export declare class ScoresController {
     private readonly scoresService;
     constructor(scoresService: ScoresService);
-    createEvaluacion(dto: CreateEvaluacionDto): Promise<void>;
-    findAllEvaluaciones(): Promise<void>;
-    findEvaluacionById(id: string): Promise<void>;
-    createNota(dto: CreateNotaDto): Promise<void>;
-    findNotasByEvaluacion(evaluacionId: string): Promise<void>;
-    createCalificacionDetalle(dto: CreateCalificacionDetalleDto): Promise<void>;
-    findDetallesByNota(notaId: string): Promise<void>;
+    createEvaluacion(dto: CreateEvaluacionDto): Promise<ApiResponseDto<import("../../domain/entities/evaluacion.entity").Evaluacion>>;
+    findAllEvaluaciones(): Promise<ApiResponseDto<import("../../domain/entities/evaluacion.entity").Evaluacion[]>>;
+    findEvaluacionById(id: string): Promise<ApiResponseDto<import("../../domain/entities/evaluacion.entity").Evaluacion>>;
+    findEvaluacionesByAsignatura(asignatura_id: string): Promise<ApiResponseDto<import("../../domain/entities/evaluacion.entity").Evaluacion[]>>;
+    findEvaluacionesByRubrica(rubrica_id: string): Promise<ApiResponseDto<import("../../domain/entities/evaluacion.entity").Evaluacion[]>>;
+    updateEvaluacion(id: string, dto: UpdateEvaluacionDto): Promise<ApiResponseDto<import("../../domain/entities/evaluacion.entity").Evaluacion>>;
+    removeEvaluacion(id: string): Promise<ApiResponseDto<null>>;
+    createNota(dto: CreateNotaDto): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota>>;
+    findAllNotas(): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota[]>>;
+    findNotaById(id: string): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota>>;
+    findNotasByInscripcion(inscripcion_id: string): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota[]>>;
+    findNotasByEstudiante(estudiante_id: string): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota[]>>;
+    updateNota(id: string, dto: UpdateNotaDto): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota>>;
+    removeNota(id: string): Promise<ApiResponseDto<null>>;
+    createCalificacionDetalle(dto: CreateCalificacionDetalleDto): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle>>;
+    findAllDetalles(): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle[]>>;
+    findDetalleById(id: string): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle>>;
+    updateCalificacionDetalle(id: string, dto: UpdateCalificacionDetalleDto): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle>>;
+    removeCalificacionDetalle(id: string): Promise<ApiResponseDto<null>>;
 }

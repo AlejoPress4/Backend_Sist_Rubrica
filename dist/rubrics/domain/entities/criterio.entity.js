@@ -17,12 +17,11 @@ let Criterio = class Criterio {
     id;
     nombre;
     descripcion;
-    ponderacion;
     rubrica;
-    rubricaId;
+    rubrica_id;
     escalas;
-    createdAt;
-    updatedAt;
+    created_at;
+    updated_at;
 };
 exports.Criterio = Criterio;
 __decorate([
@@ -38,18 +37,14 @@ __decorate([
     __metadata("design:type", String)
 ], Criterio.prototype, "descripcion", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2, default: 0 }),
-    __metadata("design:type", Number)
-], Criterio.prototype, "ponderacion", void 0);
-__decorate([
     (0, typeorm_1.ManyToOne)(() => rubrica_entity_1.Rubrica, (rubrica) => rubrica.criterios),
-    (0, typeorm_1.JoinColumn)({ name: 'rubricaId' }),
+    (0, typeorm_1.JoinColumn)({ name: 'rubrica_id' }),
     __metadata("design:type", rubrica_entity_1.Rubrica)
 ], Criterio.prototype, "rubrica", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Criterio.prototype, "rubricaId", void 0);
+], Criterio.prototype, "rubrica_id", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => escala_entity_1.Escala, (escala) => escala.criterio),
     __metadata("design:type", Array)
@@ -57,11 +52,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Criterio.prototype, "createdAt", void 0);
+], Criterio.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Criterio.prototype, "updatedAt", void 0);
+], Criterio.prototype, "updated_at", void 0);
 exports.Criterio = Criterio = __decorate([
     (0, typeorm_1.Entity)('criterios')
 ], Criterio);

@@ -18,11 +18,11 @@ let PlanEstudio = class PlanEstudio {
     nombre;
     anio;
     carrera;
-    carreraId;
+    carrera_id;
     asignatura;
-    asignaturaId;
-    createdAt;
-    updatedAt;
+    asignatura_id;
+    created_at;
+    updated_at;
 };
 exports.PlanEstudio = PlanEstudio;
 __decorate([
@@ -38,31 +38,31 @@ __decorate([
     __metadata("design:type", Number)
 ], PlanEstudio.prototype, "anio", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => carrera_entity_1.Carrera, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'carreraId' }),
+    (0, typeorm_1.ManyToOne)(() => carrera_entity_1.Carrera, carrera => carrera.planes),
+    (0, typeorm_1.JoinColumn)({ name: 'carrera_id' }),
     __metadata("design:type", carrera_entity_1.Carrera)
 ], PlanEstudio.prototype, "carrera", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], PlanEstudio.prototype, "carreraId", void 0);
+], PlanEstudio.prototype, "carrera_id", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => asignatura_entity_1.Asignatura, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'asignaturaId' }),
+    (0, typeorm_1.JoinColumn)({ name: 'asignatura_id' }),
     __metadata("design:type", asignatura_entity_1.Asignatura)
 ], PlanEstudio.prototype, "asignatura", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], PlanEstudio.prototype, "asignaturaId", void 0);
+], PlanEstudio.prototype, "asignatura_id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], PlanEstudio.prototype, "createdAt", void 0);
+], PlanEstudio.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], PlanEstudio.prototype, "updatedAt", void 0);
+], PlanEstudio.prototype, "updated_at", void 0);
 exports.PlanEstudio = PlanEstudio = __decorate([
     (0, typeorm_1.Entity)('planes_estudio')
 ], PlanEstudio);

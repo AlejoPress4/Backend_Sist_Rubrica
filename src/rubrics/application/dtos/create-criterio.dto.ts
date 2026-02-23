@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateCriterioDto {
     @IsString()
@@ -8,10 +8,6 @@ export class CreateCriterioDto {
     @IsString()
     @IsOptional()
     descripcion?: string;
-
-    @IsNumber()
-    @IsOptional()
-    ponderacion?: number;
 
     @IsUUID()
     @IsNotEmpty()

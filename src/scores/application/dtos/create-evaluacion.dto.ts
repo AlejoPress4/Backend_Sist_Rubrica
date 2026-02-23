@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID, Max, Min } from 'class-validator';
 
 export class CreateEvaluacionDto {
     @IsString()
@@ -9,11 +9,17 @@ export class CreateEvaluacionDto {
     @IsOptional()
     descripcion?: string;
 
-    @IsUUID()
+    @IsNumber({ maxDecimalPlaces: 2 })
+    @Min(0)
+    @Max(5)
     @IsNotEmpty()
-    asignaturaId: string;
+    nota: number;
 
     @IsUUID()
     @IsNotEmpty()
-    rubricaId: string;
+    asignatura_id: string;
+
+    @IsUUID()
+    @IsNotEmpty()
+    rubrica_id: string;
 }

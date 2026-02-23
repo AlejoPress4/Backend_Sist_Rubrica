@@ -17,14 +17,15 @@ const semestre_entity_1 = require("./semestre.entity");
 let Grupo = class Grupo {
     id;
     nombre;
+    codigo_grupo;
     docente;
-    docenteId;
+    docente_id;
     asignatura;
-    asignaturaId;
+    asignatura_id;
     semestre;
-    semestreId;
-    createdAt;
-    updatedAt;
+    semestre_id;
+    created_at;
+    updated_at;
 };
 exports.Grupo = Grupo;
 __decorate([
@@ -36,40 +37,44 @@ __decorate([
     __metadata("design:type", String)
 ], Grupo.prototype, "nombre", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => docente_entity_1.Docente, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'docenteId' }),
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Grupo.prototype, "codigo_grupo", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => docente_entity_1.Docente, docente => docente.grupos, { eager: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'docente_id' }),
     __metadata("design:type", docente_entity_1.Docente)
 ], Grupo.prototype, "docente", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Grupo.prototype, "docenteId", void 0);
+], Grupo.prototype, "docente_id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => asignatura_entity_1.Asignatura, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'asignaturaId' }),
+    (0, typeorm_1.ManyToOne)(() => asignatura_entity_1.Asignatura, asignatura => asignatura.grupos, { eager: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'asignatura_id' }),
     __metadata("design:type", asignatura_entity_1.Asignatura)
 ], Grupo.prototype, "asignatura", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Grupo.prototype, "asignaturaId", void 0);
+], Grupo.prototype, "asignatura_id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => semestre_entity_1.Semestre, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'semestreId' }),
+    (0, typeorm_1.ManyToOne)(() => semestre_entity_1.Semestre, semestre => semestre.grupos, { eager: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'semestre_id' }),
     __metadata("design:type", semestre_entity_1.Semestre)
 ], Grupo.prototype, "semestre", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Grupo.prototype, "semestreId", void 0);
+], Grupo.prototype, "semestre_id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Grupo.prototype, "createdAt", void 0);
+], Grupo.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Grupo.prototype, "updatedAt", void 0);
+], Grupo.prototype, "updated_at", void 0);
 exports.Grupo = Grupo = __decorate([
     (0, typeorm_1.Entity)('grupos')
 ], Grupo);

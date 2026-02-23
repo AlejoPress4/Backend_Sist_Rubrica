@@ -1,6 +1,6 @@
 export declare class CreatePlanEstudioDto {
     nombre?: string;
     anio?: number;
-    carreraId: string;
-    asignaturaId: string;
+    carrera_id: string;
+    asignatura_id: string;
 }

@@ -11,18 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Nota = void 0;
 const typeorm_1 = require("typeorm");
-const estudiante_entity_1 = require("../../../users/domain/entities/estudiante.entity");
-const evaluacion_entity_1 = require("./evaluacion.entity");
+const inscripcion_entity_1 = require("../../../courses/domain/entities/inscripcion.entity");
+const rubrica_entity_1 = require("../../../rubrics/domain/entities/rubrica.entity");
 let Nota = class Nota {
     id;
-    notaFinal;
+    nota_final;
     observaciones;
-    estudiante;
-    estudianteId;
-    evaluacion;
-    evaluacionId;
-    createdAt;
-    updatedAt;
+    estudiante_id;
+    inscripcion;
+    inscripcion_id;
+    rubrica;
+    rubrica_id;
+    created_at;
+    updated_at;
 };
 exports.Nota = Nota;
 __decorate([
@@ -32,37 +33,41 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2, default: 0 }),
     __metadata("design:type", Number)
-], Nota.prototype, "notaFinal", void 0);
+], Nota.prototype, "nota_final", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Nota.prototype, "observaciones", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => estudiante_entity_1.Estudiante, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'estudianteId' }),
-    __metadata("design:type", estudiante_entity_1.Estudiante)
-], Nota.prototype, "estudiante", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Nota.prototype, "estudiante_id", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => inscripcion_entity_1.Inscripcion, inscripcion => inscripcion.notas),
+    (0, typeorm_1.JoinColumn)({ name: 'inscripcion_id' }),
+    __metadata("design:type", inscripcion_entity_1.Inscripcion)
+], Nota.prototype, "inscripcion", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Nota.prototype, "estudianteId", void 0);
+], Nota.prototype, "inscripcion_id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => evaluacion_entity_1.Evaluacion, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'evaluacionId' }),
-    __metadata("design:type", evaluacion_entity_1.Evaluacion)
-], Nota.prototype, "evaluacion", void 0);
+    (0, typeorm_1.ManyToOne)(() => rubrica_entity_1.Rubrica, rubrica => rubrica.notas),
+    (0, typeorm_1.JoinColumn)({ name: 'rubrica_id' }),
+    __metadata("design:type", rubrica_entity_1.Rubrica)
+], Nota.prototype, "rubrica", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Nota.prototype, "evaluacionId", void 0);
+], Nota.prototype, "rubrica_id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Nota.prototype, "createdAt", void 0);
+], Nota.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Nota.prototype, "updatedAt", void 0);
+], Nota.prototype, "updated_at", void 0);
 exports.Nota = Nota = __decorate([
     (0, typeorm_1.Entity)('notas')
 ], Nota);

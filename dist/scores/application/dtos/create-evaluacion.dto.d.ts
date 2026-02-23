@@ -1,6 +1,6 @@
 export declare class CreateEvaluacionDto {
     nombre: string;
     descripcion?: string;
-    asignaturaId: string;
-    rubricaId: string;
+    asignatura_id: string;
+    rubrica_id: string;
 }

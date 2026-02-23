@@ -14,8 +14,8 @@ const class_validator_1 = require("class-validator");
 class CreateEvaluacionDto {
     nombre;
     descripcion;
-    asignaturaId;
-    rubricaId;
+    asignatura_id;
+    rubrica_id;
 }
 exports.CreateEvaluacionDto = CreateEvaluacionDto;
 __decorate([
@@ -32,10 +32,10 @@ __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateEvaluacionDto.prototype, "asignaturaId", void 0);
+], CreateEvaluacionDto.prototype, "asignatura_id", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateEvaluacionDto.prototype, "rubricaId", void 0);
+], CreateEvaluacionDto.prototype, "rubrica_id", void 0);
 //# sourceMappingURL=create-evaluacion.dto.js.map

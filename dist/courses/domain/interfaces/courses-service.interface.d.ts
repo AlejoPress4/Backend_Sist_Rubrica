@@ -1,12 +1,30 @@
 import { Grupo } from '../entities/grupo.entity';
 import { Inscripcion } from '../entities/inscripcion.entity';
 import { Semestre } from '../entities/semestre.entity';
+import { CreateSemestreDto } from '../../application/dtos/create-semestre.dto';
+import { UpdateSemestreDto } from '../../application/dtos/update-semestre.dto';
+import { CreateGrupoDto } from '../../application/dtos/create-grupo.dto';
+import { UpdateGrupoDto } from '../../application/dtos/update-grupo.dto';
+import { CreateInscripcionDto } from '../../application/dtos/create-inscripcion.dto';
+import { UpdateInscripcionDto } from '../../application/dtos/update-inscripcion.dto';
 export interface ICoursesService {
-    createSemestre(data: Partial<Semestre>): Promise<Semestre>;
+    createSemestre(dto: CreateSemestreDto): Promise<Semestre>;
     findAllSemestres(): Promise<Semestre[]>;
-    createGrupo(data: Partial<Grupo>): Promise<Grupo>;
+    findSemestreById(id: string): Promise<Semestre>;
+    updateSemestre(id: string, dto: UpdateSemestreDto): Promise<Semestre>;
+    removeSemestre(id: string): Promise<void>;
+    createGrupo(dto: CreateGrupoDto): Promise<Grupo>;
     findAllGrupos(): Promise<Grupo[]>;
     findGrupoById(id: string): Promise<Grupo>;
-    createInscripcion(data: Partial<Inscripcion>): Promise<Inscripcion>;
-    findInscripcionesByGrupo(grupoId: string): Promise<Inscripcion[]>;
+    findGruposBySemestre(semestre_id: string): Promise<Grupo[]>;
+    findGruposByDocente(docente_id: string): Promise<Grupo[]>;
+    updateGrupo(id: string, dto: UpdateGrupoDto): Promise<Grupo>;
+    removeGrupo(id: string): Promise<void>;
+    createInscripcion(dto: CreateInscripcionDto): Promise<Inscripcion>;
+    findAllInscripciones(): Promise<Inscripcion[]>;
+    findInscripcionById(id: string): Promise<Inscripcion>;
+    findInscripcionesByGrupo(grupo_id: string): Promise<Inscripcion[]>;
+    findInscripcionesByEstudiante(estudiante_id: string): Promise<Inscripcion[]>;
+    updateInscripcion(id: string, dto: UpdateInscripcionDto): Promise<Inscripcion>;
+    removeInscripcion(id: string): Promise<void>;
 }

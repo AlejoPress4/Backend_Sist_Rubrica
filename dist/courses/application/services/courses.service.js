@@ -28,26 +28,86 @@ let CoursesService = class CoursesService {
         this.grupoRepository = grupoRepository;
         this.inscripcionRepository = inscripcionRepository;
     }
-    async createSemestre(data) {
-        throw new Error('Method not implemented.');
+    async createSemestre(dto) {
+        const semestre = this.semestreRepository.create(dto);
+        return this.semestreRepository.save(semestre);
     }
     async findAllSemestres() {
-        throw new Error('Method not implemented.');
+        return this.semestreRepository.find();
     }
-    async createGrupo(data) {
-        throw new Error('Method not implemented.');
+    async findSemestreById(id) {
+        const semestre = await this.semestreRepository.findOne({ where: { id } });
+        if (!semestre) {
+            throw new common_1.NotFoundException(`Semestre con ID ${id} no encontrado`);
+        }
+        return semestre;
+    }
+    async updateSemestre(id, dto) {
+        const semestre = await this.findSemestreById(id);
+        Object.assign(semestre, dto);
+        return this.semestreRepository.save(semestre);
+    }
+    async removeSemestre(id) {
+        const semestre = await this.findSemestreById(id);
+        await this.semestreRepository.remove(semestre);
+    }
+    async createGrupo(dto) {
+        const grupo = this.grupoRepository.create(dto);
+        return this.grupoRepository.save(grupo);
     }
     async findAllGrupos() {
-        throw new Error('Method not implemented.');
+        return this.grupoRepository.find();
     }
     async findGrupoById(id) {
-        throw new Error('Method not implemented.');
+        const grupo = await this.grupoRepository.findOne({ where: { id } });
+        if (!grupo) {
+            throw new common_1.NotFoundException(`Grupo con ID ${id} no encontrado`);
+        }
+        return grupo;
     }
-    async createInscripcion(data) {
-        throw new Error('Method not implemented.');
+    async findGruposBySemestre(semestre_id) {
+        return this.grupoRepository.find({ where: { semestre_id } });
     }
-    async findInscripcionesByGrupo(grupoId) {
-        throw new Error('Method not implemented.');
+    async findGruposByDocente(docente_id) {
+        return this.grupoRepository.find({ where: { docente_id } });
+    }
+    async updateGrupo(id, dto) {
+        const grupo = await this.findGrupoById(id);
+        Object.assign(grupo, dto);
+        return this.grupoRepository.save(grupo);
+    }
+    async removeGrupo(id) {
+        const grupo = await this.findGrupoById(id);
+        await this.grupoRepository.remove(grupo);
+    }
+    async createInscripcion(dto) {
+        const inscripcion = this.inscripcionRepository.create(dto);
+        return this.inscripcionRepository.save(inscripcion);
+    }
+    async findAllInscripciones() {
+        return this.inscripcionRepository.find();
+    }
+    async findInscripcionById(id) {
+        const inscripcion = await this.inscripcionRepository.findOne({ where: { id } });
+        if (!inscripcion) {
+            throw new common_1.NotFoundException(`Inscripción con ID ${id} no encontrada`);
+        }
+        return inscripcion;
+    }
+    async findInscripcionesByGrupo(grupo_id) {
+        return this.inscripcionRepository.find({ where: { grupo_id } });
+    }
+    async findInscripcionesByEstudiante(estudiante_id) {
+        return this.inscripcionRepository.find({ where: { estudiante_id } });
+    }
+    async updateInscripcion(id, dto) {
+        const inscripcion = await this.findInscripcionById(id);
+        Object.assign(inscripcion, dto);
+        return this.inscripcionRepository.save(inscripcion);
+    }
+    async removeInscripcion(id) {
+        const inscripcion = await this.findInscripcionById(id);
+        await this.inscripcionRepository.remove(inscripcion);
     }
 };
 exports.CoursesService = CoursesService;

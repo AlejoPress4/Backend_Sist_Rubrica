@@ -2,9 +2,7 @@ import { UserRole } from '../../../common/constants/constants';
 export declare class CreateUserDto {
     email: string;
     password: string;
-    nombre: string;
-    apellido: string;
+    codigo: number;
     rol: UserRole;
-    especialidad?: string;
-
+    is_active?: boolean;
 }

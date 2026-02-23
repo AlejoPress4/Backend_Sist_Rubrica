@@ -8,7 +8,7 @@ const all_exceptions_filter_1 = require("./common/filters/all-exceptions.filter"
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const configService = app.get(config_1.ConfigService);
-    app.setGlobalPrefix('api/v1');
+    app.setGlobalPrefix('api');
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,

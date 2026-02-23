@@ -11,14 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Semestre = void 0;
 const typeorm_1 = require("typeorm");
+const grupo_entity_1 = require("./grupo.entity");
 let Semestre = class Semestre {
     id;
+    fecha_inicio;
+    fecha_fin;
     nombre;
-    fechaInicio;
-    fechaFin;
-    activo;
-    createdAt;
-    updatedAt;
+    codigo;
+    estado;
+    grupos;
+    created_at;
+    updated_at;
 };
 exports.Semestre = Semestre;
 __decorate([
@@ -26,29 +29,37 @@ __decorate([
     __metadata("design:type", String)
 ], Semestre.prototype, "id", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", Date)
+], Semestre.prototype, "fecha_inicio", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", Date)
+], Semestre.prototype, "fecha_fin", void 0);
+__decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Semestre.prototype, "nombre", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", Date)
-], Semestre.prototype, "fechaInicio", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", Date)
-], Semestre.prototype, "fechaFin", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Semestre.prototype, "codigo", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: true }),
     __metadata("design:type", Boolean)
-], Semestre.prototype, "activo", void 0);
+], Semestre.prototype, "estado", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => grupo_entity_1.Grupo, (grupo) => grupo.semestre),
+    __metadata("design:type", Array)
+], Semestre.prototype, "grupos", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Semestre.prototype, "createdAt", void 0);
+], Semestre.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Semestre.prototype, "updatedAt", void 0);
+], Semestre.prototype, "updated_at", void 0);
 exports.Semestre = Semestre = __decorate([
     (0, typeorm_1.Entity)('semestres')
 ], Semestre);

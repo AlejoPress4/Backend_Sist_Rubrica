@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateRubricaDto {
     @IsString()
@@ -9,6 +9,7 @@ export class CreateRubricaDto {
     @IsOptional()
     descripcion?: string;
 
+    @IsBoolean()
     @IsOptional()
     es_publica?: boolean;
 }

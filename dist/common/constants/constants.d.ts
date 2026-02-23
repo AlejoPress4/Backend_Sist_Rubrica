@@ -8,4 +8,10 @@ export declare enum EstadoInscripcion {
     INACTIVO = "inactivo",
     RETIRADO = "retirado"
 }
+export declare enum EstadoMatricula {
+    ACTIVO = "activo",
+    GRADUADO = "graduado",
+    RETIRADO = "retirado",
+    SUSPENDIDO = "suspendido"
+}
 export declare const ROLES_KEY = "roles";

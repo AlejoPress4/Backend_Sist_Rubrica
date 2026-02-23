@@ -12,14 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Rubrica = void 0;
 const typeorm_1 = require("typeorm");
 const criterio_entity_1 = require("./criterio.entity");
+const nota_entity_1 = require("../../../scores/domain/entities/nota.entity");
+const evaluacion_entity_1 = require("../../../scores/domain/entities/evaluacion.entity");
 let Rubrica = class Rubrica {
     id;
     titulo;
     descripcion;
     es_publica;
     criterios;
-    createdAt;
-    updatedAt;
+    notas;
+    evaluaciones;
+    created_at;
+    updated_at;
 };
 exports.Rubrica = Rubrica;
 __decorate([
@@ -39,17 +43,25 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Rubrica.prototype, "es_publica", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => criterio_entity_1.Criterio, (criterio) => criterio.rubrica),
+    (0, typeorm_1.OneToMany)(() => criterio_entity_1.Criterio, criterio => criterio.rubrica),
     __metadata("design:type", Array)
 ], Rubrica.prototype, "criterios", void 0);
 __decorate([
+    (0, typeorm_1.OneToMany)(() => nota_entity_1.Nota, nota => nota.rubrica),
+    __metadata("design:type", Array)
+], Rubrica.prototype, "notas", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => evaluacion_entity_1.Evaluacion, evaluacion => evaluacion.rubrica),
+    __metadata("design:type", Array)
+], Rubrica.prototype, "evaluaciones", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Rubrica.prototype, "createdAt", void 0);
+], Rubrica.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Rubrica.prototype, "updatedAt", void 0);
+], Rubrica.prototype, "updated_at", void 0);
 exports.Rubrica = Rubrica = __decorate([
     (0, typeorm_1.Entity)('rubricas')
 ], Rubrica);

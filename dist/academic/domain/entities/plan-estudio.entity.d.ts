@@ -5,9 +5,9 @@ export declare class PlanEstudio {
     nombre: string;
     anio: number;
     carrera: Carrera;
-    carreraId: string;
+    carrera_id: string;
     asignatura: Asignatura;
-    asignaturaId: string;
-    createdAt: Date;
-    updatedAt: Date;
+    asignatura_id: string;
+    created_at: Date;
+    updated_at: Date;
 }

@@ -14,8 +14,7 @@ const class_validator_1 = require("class-validator");
 class CreateCriterioDto {
     nombre;
     descripcion;
-    ponderacion;
-    rubricaId;
+    rubrica_id;
 }
 exports.CreateCriterioDto = CreateCriterioDto;
 __decorate([
@@ -29,13 +28,8 @@ __decorate([
     __metadata("design:type", String)
 ], CreateCriterioDto.prototype, "descripcion", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Number)
-], CreateCriterioDto.prototype, "ponderacion", void 0);
-__decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateCriterioDto.prototype, "rubricaId", void 0);
+], CreateCriterioDto.prototype, "rubrica_id", void 0);
 //# sourceMappingURL=create-criterio.dto.js.map

@@ -11,14 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Asignatura = void 0;
 const typeorm_1 = require("typeorm");
+const grupo_entity_1 = require("../../../courses/domain/entities/grupo.entity");
+const evaluacion_entity_1 = require("../../../scores/domain/entities/evaluacion.entity");
+const plan_estudio_entity_1 = require("./plan-estudio.entity");
 let Asignatura = class Asignatura {
     id;
     nombre;
     codigo;
     descripcion;
     creditos;
-    createdAt;
-    updatedAt;
+    grupos;
+    evaluaciones;
+    planes;
+    created_at;
+    updated_at;
 };
 exports.Asignatura = Asignatura;
 __decorate([
@@ -42,13 +48,25 @@ __decorate([
     __metadata("design:type", Number)
 ], Asignatura.prototype, "creditos", void 0);
 __decorate([
+    (0, typeorm_1.OneToMany)(() => grupo_entity_1.Grupo, grupo => grupo.asignatura),
+    __metadata("design:type", Array)
+], Asignatura.prototype, "grupos", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => evaluacion_entity_1.Evaluacion, evaluacion => evaluacion.asignatura),
+    __metadata("design:type", Array)
+], Asignatura.prototype, "evaluaciones", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => plan_estudio_entity_1.PlanEstudio, plan => plan.asignatura),
+    __metadata("design:type", Array)
+], Asignatura.prototype, "planes", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Asignatura.prototype, "createdAt", void 0);
+], Asignatura.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Asignatura.prototype, "updatedAt", void 0);
+], Asignatura.prototype, "updated_at", void 0);
 exports.Asignatura = Asignatura = __decorate([
     (0, typeorm_1.Entity)('asignaturas')
 ], Asignatura);

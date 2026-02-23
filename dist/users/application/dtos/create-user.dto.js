@@ -15,10 +15,9 @@ const constants_1 = require("../../../common/constants/constants");
 class CreateUserDto {
     email;
     password;
-    nombre;
-    apellido;
+    codigo;
     rol;
-    especialidad;
+    is_active;
 }
 exports.CreateUserDto = CreateUserDto;
 __decorate([
@@ -33,28 +32,18 @@ __decorate([
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsInt)(),
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "nombre", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "apellido", void 0);
+    __metadata("design:type", Number)
+], CreateUserDto.prototype, "codigo", void 0);
 __decorate([
     (0, class_validator_1.IsEnum)(constants_1.UserRole),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "rol", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "especialidad", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "matricula", void 0);
+    __metadata("design:type", Boolean)
+], CreateUserDto.prototype, "is_active", void 0);
 //# sourceMappingURL=create-user.dto.js.map

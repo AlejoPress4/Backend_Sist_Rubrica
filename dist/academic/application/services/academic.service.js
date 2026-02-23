@@ -19,38 +19,118 @@ const typeorm_2 = require("typeorm");
 const carrera_entity_1 = require("../../domain/entities/carrera.entity");
 const asignatura_entity_1 = require("../../domain/entities/asignatura.entity");
 const plan_estudio_entity_1 = require("../../domain/entities/plan-estudio.entity");
+const matricula_entity_1 = require("../../domain/entities/matricula.entity");
 let AcademicService = class AcademicService {
     carreraRepository;
     asignaturaRepository;
     planEstudioRepository;
-    constructor(carreraRepository, asignaturaRepository, planEstudioRepository) {
+    matriculaRepository;
+    constructor(carreraRepository, asignaturaRepository, planEstudioRepository, matriculaRepository) {
         this.carreraRepository = carreraRepository;
         this.asignaturaRepository = asignaturaRepository;
         this.planEstudioRepository = planEstudioRepository;
+        this.matriculaRepository = matriculaRepository;
     }
-    async createCarrera(data) {
-        throw new Error('Method not implemented.');
+    async createCarrera(dto) {
+        const carrera = this.carreraRepository.create(dto);
+        return this.carreraRepository.save(carrera);
     }
     async findAllCarreras() {
-        throw new Error('Method not implemented.');
+        return this.carreraRepository.find();
     }
     async findCarreraById(id) {
-        throw new Error('Method not implemented.');
+        const carrera = await this.carreraRepository.findOne({ where: { id } });
+        if (!carrera) {
+            throw new common_1.NotFoundException(`Carrera con ID ${id} no encontrada`);
+        }
+        return carrera;
     }
-    async createAsignatura(data) {
-        throw new Error('Method not implemented.');
+    async updateCarrera(id, dto) {
+        const carrera = await this.findCarreraById(id);
+        Object.assign(carrera, dto);
+        return this.carreraRepository.save(carrera);
+    }
+    async removeCarrera(id) {
+        const carrera = await this.findCarreraById(id);
+        await this.carreraRepository.remove(carrera);
+    }
+    async createAsignatura(dto) {
+        const asignatura = this.asignaturaRepository.create(dto);
+        return this.asignaturaRepository.save(asignatura);
     }
     async findAllAsignaturas() {
-        throw new Error('Method not implemented.');
+        return this.asignaturaRepository.find();
     }
     async findAsignaturaById(id) {
-        throw new Error('Method not implemented.');
+        const asignatura = await this.asignaturaRepository.findOne({ where: { id } });
+        if (!asignatura) {
+            throw new common_1.NotFoundException(`Asignatura con ID ${id} no encontrada`);
+        }
+        return asignatura;
     }
-    async createPlanEstudio(data) {
-        throw new Error('Method not implemented.');
+    async updateAsignatura(id, dto) {
+        const asignatura = await this.findAsignaturaById(id);
+        Object.assign(asignatura, dto);
+        return this.asignaturaRepository.save(asignatura);
+    }
+    async removeAsignatura(id) {
+        const asignatura = await this.findAsignaturaById(id);
+        await this.asignaturaRepository.remove(asignatura);
+    }
+    async createPlanEstudio(dto) {
+        const plan = this.planEstudioRepository.create(dto);
+        return this.planEstudioRepository.save(plan);
     }
     async findAllPlanesEstudio() {
-        throw new Error('Method not implemented.');
+        return this.planEstudioRepository.find();
+    }
+    async findPlanEstudioById(id) {
+        const plan = await this.planEstudioRepository.findOne({ where: { id } });
+        if (!plan) {
+            throw new common_1.NotFoundException(`Plan de Estudio con ID ${id} no encontrado`);
+        }
+        return plan;
+    }
+    async findPlanesByCarrera(carrera_id) {
+        return this.planEstudioRepository.find({ where: { carrera_id } });
+    }
+    async updatePlanEstudio(id, dto) {
+        const plan = await this.findPlanEstudioById(id);
+        Object.assign(plan, dto);
+        return this.planEstudioRepository.save(plan);
+    }
+    async removePlanEstudio(id) {
+        const plan = await this.findPlanEstudioById(id);
+        await this.planEstudioRepository.remove(plan);
+    }
+    async createMatricula(dto) {
+        const matricula = this.matriculaRepository.create(dto);
+        return this.matriculaRepository.save(matricula);
+    }
+    async findAllMatriculas() {
+        return this.matriculaRepository.find();
+    }
+    async findMatriculaById(id) {
+        const matricula = await this.matriculaRepository.findOne({ where: { id } });
+        if (!matricula) {
+            throw new common_1.NotFoundException(`Matrícula con ID ${id} no encontrada`);
+        }
+        return matricula;
+    }
+    async findMatriculasByEstudiante(estudiante_id) {
+        return this.matriculaRepository.find({ where: { estudiante_id } });
+    }
+    async findMatriculasByCarrera(carrera_id) {
+        return this.matriculaRepository.find({ where: { carrera_id } });
+    }
+    async updateMatricula(id, dto) {
+        const matricula = await this.findMatriculaById(id);
+        Object.assign(matricula, dto);
+        return this.matriculaRepository.save(matricula);
+    }
+    async removeMatricula(id) {
+        const matricula = await this.findMatriculaById(id);
+        await this.matriculaRepository.remove(matricula);
     }
 };
 exports.AcademicService = AcademicService;
@@ -59,7 +139,9 @@ exports.AcademicService = AcademicService = __decorate([
     __param(0, (0, typeorm_1.InjectRepository)(carrera_entity_1.Carrera)),
     __param(1, (0, typeorm_1.InjectRepository)(asignatura_entity_1.Asignatura)),
     __param(2, (0, typeorm_1.InjectRepository)(plan_estudio_entity_1.PlanEstudio)),
+    __param(3, (0, typeorm_1.InjectRepository)(matricula_entity_1.Matricula)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository])
 ], AcademicService);

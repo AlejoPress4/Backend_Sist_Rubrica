@@ -7,8 +7,8 @@ import { Grupo } from '../../../courses/domain/entities/grupo.entity';
 
 @Entity('docentes')
 export class Docente {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     nombre: string;
@@ -33,7 +33,7 @@ export class Docente {
     user_id: string;
 
     //Relación hacia Grupo
-    @OneToMany(() => Grupo, grupo => grupo.docente, { eager: true })
+    @OneToMany(() => Grupo, grupo => grupo.docente)
     grupos: Grupo[];
 
     @CreateDateColumn()

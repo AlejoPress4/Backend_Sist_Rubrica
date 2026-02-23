@@ -13,9 +13,10 @@ exports.CreateGrupoDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateGrupoDto {
     nombre;
-    docenteId;
-    asignaturaId;
-    semestreId;
+    codigo_grupo;
+    docente_id;
+    asignatura_id;
+    semestre_id;
 }
 exports.CreateGrupoDto = CreateGrupoDto;
 __decorate([
@@ -24,18 +25,23 @@ __decorate([
     __metadata("design:type", String)
 ], CreateGrupoDto.prototype, "nombre", void 0);
 __decorate([
-    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateGrupoDto.prototype, "docenteId", void 0);
+], CreateGrupoDto.prototype, "codigo_grupo", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateGrupoDto.prototype, "asignaturaId", void 0);
+], CreateGrupoDto.prototype, "docente_id", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateGrupoDto.prototype, "semestreId", void 0);
+], CreateGrupoDto.prototype, "asignatura_id", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateGrupoDto.prototype, "semestre_id", void 0);
 //# sourceMappingURL=create-grupo.dto.js.map

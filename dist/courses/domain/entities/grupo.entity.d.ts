@@ -4,12 +4,13 @@ import { Semestre } from './semestre.entity';
 export declare class Grupo {
     id: string;
     nombre: string;
+    codigo_grupo: string;
     docente: Docente;
-    docenteId: string;
+    docente_id: string;
     asignatura: Asignatura;
-    asignaturaId: string;
+    asignatura_id: string;
     semestre: Semestre;
-    semestreId: string;
-    createdAt: Date;
-    updatedAt: Date;
+    semestre_id: string;
+    created_at: Date;
+    updated_at: Date;
 }

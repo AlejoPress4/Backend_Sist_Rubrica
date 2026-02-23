@@ -1,12 +1,30 @@
 import { Evaluacion } from '../entities/evaluacion.entity';
 import { Nota } from '../entities/nota.entity';
 import { CalificacionDetalle } from '../entities/calificacion-detalle.entity';
+import { CreateEvaluacionDto } from '../../application/dtos/create-evaluacion.dto';
+import { UpdateEvaluacionDto } from '../../application/dtos/update-evaluacion.dto';
+import { CreateNotaDto } from '../../application/dtos/create-nota.dto';
+import { UpdateNotaDto } from '../../application/dtos/update-nota.dto';
+import { CreateCalificacionDetalleDto } from '../../application/dtos/create-calificacion-detalle.dto';
+import { UpdateCalificacionDetalleDto } from '../../application/dtos/update-calificacion-detalle.dto';
 export interface IScoresService {
-    createEvaluacion(data: Partial<Evaluacion>): Promise<Evaluacion>;
+    createEvaluacion(dto: CreateEvaluacionDto): Promise<Evaluacion>;
     findAllEvaluaciones(): Promise<Evaluacion[]>;
     findEvaluacionById(id: string): Promise<Evaluacion>;
-    createNota(data: Partial<Nota>): Promise<Nota>;
-    findNotasByEvaluacion(evaluacionId: string): Promise<Nota[]>;
-    createCalificacionDetalle(data: Partial<CalificacionDetalle>): Promise<CalificacionDetalle>;
-    findDetallesByNota(notaId: string): Promise<CalificacionDetalle[]>;
+    findEvaluacionesByAsignatura(asignatura_id: string): Promise<Evaluacion[]>;
+    findEvaluacionesByRubrica(rubrica_id: string): Promise<Evaluacion[]>;
+    updateEvaluacion(id: string, dto: UpdateEvaluacionDto): Promise<Evaluacion>;
+    removeEvaluacion(id: string): Promise<void>;
+    createNota(dto: CreateNotaDto): Promise<Nota>;
+    findAllNotas(): Promise<Nota[]>;
+    findNotaById(id: string): Promise<Nota>;
+    findNotasByInscripcion(inscripcion_id: string): Promise<Nota[]>;
+    findNotasByEstudiante(estudiante_id: string): Promise<Nota[]>;
+    updateNota(id: string, dto: UpdateNotaDto): Promise<Nota>;
+    removeNota(id: string): Promise<void>;
+    createCalificacionDetalle(dto: CreateCalificacionDetalleDto): Promise<CalificacionDetalle>;
+    findAllDetalles(): Promise<CalificacionDetalle[]>;
+    findDetalleById(id: string): Promise<CalificacionDetalle>;
+    updateCalificacionDetalle(id: string, dto: UpdateCalificacionDetalleDto): Promise<CalificacionDetalle>;
+    removeCalificacionDetalle(id: string): Promise<void>;
 }

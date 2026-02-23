@@ -28,6 +28,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateRubricaDto.prototype, "descripcion", void 0);
 __decorate([
+    (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
 ], CreateRubricaDto.prototype, "es_publica", void 0);

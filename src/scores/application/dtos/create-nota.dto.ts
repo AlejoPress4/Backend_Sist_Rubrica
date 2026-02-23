@@ -1,19 +1,23 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateNotaDto {
-    @IsNumber()
+    @IsNumber({ maxDecimalPlaces: 2 })
     @IsOptional()
-    notaFinal?: number;
+    nota_final?: number;
 
     @IsString()
     @IsOptional()
     observaciones?: string;
 
-    @IsUUID()
+    @IsInt()
     @IsNotEmpty()
-    estudianteId: string;
+    estudiante_id: number;
 
     @IsUUID()
     @IsNotEmpty()
-    evaluacionId: string;
+    inscripcion_id: string;
+
+    @IsUUID()
+    @IsNotEmpty()
+    rubrica_id: string;
 }

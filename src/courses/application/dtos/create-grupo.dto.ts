@@ -1,13 +1,17 @@
-import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsInt, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateGrupoDto {
     @IsString()
     @IsOptional()
     nombre?: string;
 
-    @IsUUID()
+    @IsString()
     @IsNotEmpty()
-    docente_id: string;
+    codigo_grupo: string;
+
+    @IsInt()
+    @IsNotEmpty()
+    docente_id: number;
 
     @IsUUID()
     @IsNotEmpty()
@@ -16,4 +20,5 @@ export class CreateGrupoDto {
     @IsUUID()
     @IsNotEmpty()
     semestre_id: string;
+    
 }

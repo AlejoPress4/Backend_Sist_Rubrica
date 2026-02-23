@@ -1,6 +1,7 @@
 export declare class CreateSemestreDto {
     nombre: string;
-    fechaInicio?: string;
-    fechaFin?: string;
-    activo?: boolean;
+    codigo: string;
+    fecha_inicio?: Date;
+    fecha_fin?: Date;
+    estado?: boolean;
 }

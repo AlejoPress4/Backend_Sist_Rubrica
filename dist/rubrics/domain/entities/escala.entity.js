@@ -12,15 +12,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Escala = void 0;
 const typeorm_1 = require("typeorm");
 const criterio_entity_1 = require("./criterio.entity");
+const calificacion_detalle_entity_1 = require("../../../scores/domain/entities/calificacion-detalle.entity");
 let Escala = class Escala {
     id;
     nombre;
     descripcion;
     valor;
     criterio;
-    criterioId;
-    createdAt;
-    updatedAt;
+    criterio_id;
+    calificacionDetalles;
+    created_at;
+    updated_at;
 };
 exports.Escala = Escala;
 __decorate([
@@ -41,21 +43,25 @@ __decorate([
 ], Escala.prototype, "valor", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => criterio_entity_1.Criterio, (criterio) => criterio.escalas),
-    (0, typeorm_1.JoinColumn)({ name: 'criterioId' }),
+    (0, typeorm_1.JoinColumn)({ name: 'criterio_id' }),
     __metadata("design:type", criterio_entity_1.Criterio)
 ], Escala.prototype, "criterio", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Escala.prototype, "criterioId", void 0);
+], Escala.prototype, "criterio_id", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => calificacion_detalle_entity_1.CalificacionDetalle, calificacionDetalle => calificacionDetalle.escala),
+    __metadata("design:type", Array)
+], Escala.prototype, "calificacionDetalles", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Escala.prototype, "createdAt", void 0);
+], Escala.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Escala.prototype, "updatedAt", void 0);
+], Escala.prototype, "updated_at", void 0);
 exports.Escala = Escala = __decorate([
     (0, typeorm_1.Entity)('escalas')
 ], Escala);

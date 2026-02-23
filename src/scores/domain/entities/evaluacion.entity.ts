@@ -16,6 +16,9 @@ export class Evaluacion {
     @Column({ nullable: true })
     descripcion: string;
 
+    @Column('decimal', { precision: 5, scale: 2 })
+    nota: number;
+
     @ManyToOne(() => Asignatura, { eager: true })
     @JoinColumn({ name: 'asignatura_id' })
     asignatura: Asignatura;

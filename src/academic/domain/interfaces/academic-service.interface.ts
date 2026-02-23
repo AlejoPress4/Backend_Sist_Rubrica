@@ -2,29 +2,43 @@ import { Carrera } from '../entities/carrera.entity';
 import { Asignatura } from '../entities/asignatura.entity';
 import { PlanEstudio } from '../entities/plan-estudio.entity';
 import { Matricula } from '../entities/matricula.entity';
+import { CreateCarreraDto } from '../../application/dtos/create-carrera.dto';
+import { UpdateCarreraDto } from '../../application/dtos/update-carrera.dto';
+import { CreateAsignaturaDto } from '../../application/dtos/create-asignatura.dto';
+import { UpdateAsignaturaDto } from '../../application/dtos/update-asignatura.dto';
+import { CreatePlanEstudioDto } from '../../application/dtos/create-plan-estudio.dto';
+import { UpdatePlanEstudioDto } from '../../application/dtos/update-plan-estudio.dto';
 import { CreateMatriculaDto } from '../../application/dtos/create-matricula.dto';
 import { UpdateMatriculaDto } from '../../application/dtos/update-matricula.dto';
 
 export interface IAcademicService {
     // Carreras
-    createCarrera(data: Partial<Carrera>): Promise<Carrera>;
+    createCarrera(dto: CreateCarreraDto): Promise<Carrera>;
     findAllCarreras(): Promise<Carrera[]>;
     findCarreraById(id: string): Promise<Carrera>;
+    updateCarrera(id: string, dto: UpdateCarreraDto): Promise<Carrera>;
+    removeCarrera(id: string): Promise<void>;
 
     // Asignaturas
-    createAsignatura(data: Partial<Asignatura>): Promise<Asignatura>;
+    createAsignatura(dto: CreateAsignaturaDto): Promise<Asignatura>;
     findAllAsignaturas(): Promise<Asignatura[]>;
     findAsignaturaById(id: string): Promise<Asignatura>;
+    updateAsignatura(id: string, dto: UpdateAsignaturaDto): Promise<Asignatura>;
+    removeAsignatura(id: string): Promise<void>;
 
     // Planes de Estudio
-    createPlanEstudio(data: Partial<PlanEstudio>): Promise<PlanEstudio>;
+    createPlanEstudio(dto: CreatePlanEstudioDto): Promise<PlanEstudio>;
     findAllPlanesEstudio(): Promise<PlanEstudio[]>;
+    findPlanEstudioById(id: string): Promise<PlanEstudio>;
+    findPlanesByCarrera(carrera_id: string): Promise<PlanEstudio[]>;
+    updatePlanEstudio(id: string, dto: UpdatePlanEstudioDto): Promise<PlanEstudio>;
+    removePlanEstudio(id: string): Promise<void>;
 
     // Matrículas
     createMatricula(dto: CreateMatriculaDto): Promise<Matricula>;
     findAllMatriculas(): Promise<Matricula[]>;
     findMatriculaById(id: string): Promise<Matricula>;
-    findMatriculasByEstudiante(estudiante_id: string): Promise<Matricula[]>;
+    findMatriculasByEstudiante(estudiante_id: number): Promise<Matricula[]>;
     findMatriculasByCarrera(carrera_id: string): Promise<Matricula[]>;
     updateMatricula(id: string, dto: UpdateMatriculaDto): Promise<Matricula>;
     removeMatricula(id: string): Promise<void>;

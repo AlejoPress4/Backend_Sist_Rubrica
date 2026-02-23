@@ -1,13 +1,16 @@
 import { Estudiante } from '../../../users/domain/entities/estudiante.entity';
 import { Grupo } from './grupo.entity';
 import { EstadoInscripcion } from '../../../common/constants/constants';
+import { Nota } from '../../../scores/domain/entities/nota.entity';
 export declare class Inscripcion {
     id: string;
-    estudiante: Estudiante;
-    estudianteId: string;
-    grupo: Grupo;
-    grupoId: string;
+    fecha_inscripcion: Date;
     estado: EstadoInscripcion;
-    createdAt: Date;
-    updatedAt: Date;
+    estudiante: Estudiante;
+    estudiante_id: string;
+    grupo: Grupo;
+    grupo_id: string;
+    notas: Nota[];
+    created_at: Date;
+    updated_at: Date;
 }
