@@ -19,7 +19,8 @@ export class User {
     rol: UserRole;
 
     @Column({ default: true })
-    is_active: boolean;
+    is_active: boolean;i
+    //i es una propiedad que indica si el usuario está activo o no, por defecto es true
 
     @CreateDateColumn()
     created_at: Date;

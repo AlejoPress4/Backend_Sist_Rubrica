@@ -16,14 +16,14 @@ export declare class UsersController {
     removeUser(id: string): Promise<ApiResponseDto<null>>;
     createDocente(dto: CreateDocenteDto): Promise<ApiResponseDto<import("../../domain/entities/docente.entity").Docente>>;
     findAllDocentes(): Promise<ApiResponseDto<import("../../domain/entities/docente.entity").Docente[]>>;
-    findDocenteById(id: string): Promise<ApiResponseDto<import("../../domain/entities/docente.entity").Docente>>;
+    findDocenteById(id: number): Promise<ApiResponseDto<import("../../domain/entities/docente.entity").Docente>>;
     findDocenteByUserId(user_id: string): Promise<ApiResponseDto<import("../../domain/entities/docente.entity").Docente>>;
-    updateDocente(id: string, dto: UpdateDocenteDto): Promise<ApiResponseDto<import("../../domain/entities/docente.entity").Docente>>;
-    removeDocente(id: string): Promise<ApiResponseDto<null>>;
+    updateDocente(id: number, dto: UpdateDocenteDto): Promise<ApiResponseDto<import("../../domain/entities/docente.entity").Docente>>;
+    removeDocente(id: number): Promise<ApiResponseDto<null>>;
     createEstudiante(dto: CreateEstudianteDto): Promise<ApiResponseDto<import("../../domain/entities/estudiante.entity").Estudiante>>;
     findAllEstudiantes(): Promise<ApiResponseDto<import("../../domain/entities/estudiante.entity").Estudiante[]>>;
-    findEstudianteById(id: string): Promise<ApiResponseDto<import("../../domain/entities/estudiante.entity").Estudiante>>;
+    findEstudianteById(id: number): Promise<ApiResponseDto<import("../../domain/entities/estudiante.entity").Estudiante>>;
     findEstudianteByUserId(user_id: string): Promise<ApiResponseDto<import("../../domain/entities/estudiante.entity").Estudiante>>;
-    updateEstudiante(id: string, dto: UpdateEstudianteDto): Promise<ApiResponseDto<import("../../domain/entities/estudiante.entity").Estudiante>>;
-    removeEstudiante(id: string): Promise<ApiResponseDto<null>>;
+    updateEstudiante(id: number, dto: UpdateEstudianteDto): Promise<ApiResponseDto<import("../../domain/entities/estudiante.entity").Estudiante>>;
+    removeEstudiante(id: number): Promise<ApiResponseDto<null>>;
 }

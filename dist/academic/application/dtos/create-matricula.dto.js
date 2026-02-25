@@ -20,9 +20,9 @@ class CreateMatriculaDto {
 }
 exports.CreateMatriculaDto = CreateMatriculaDto;
 __decorate([
-    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsInt)(),
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], CreateMatriculaDto.prototype, "estudiante_id", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),

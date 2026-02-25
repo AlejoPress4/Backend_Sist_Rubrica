@@ -37,7 +37,7 @@ export declare class AcademicService implements IAcademicService {
     createMatricula(dto: CreateMatriculaDto): Promise<Matricula>;
     findAllMatriculas(): Promise<Matricula[]>;
     findMatriculaById(id: string): Promise<Matricula>;
-    findMatriculasByEstudiante(estudiante_id: string): Promise<Matricula[]>;
+    findMatriculasByEstudiante(estudiante_id: number): Promise<Matricula[]>;
     findMatriculasByCarrera(carrera_id: string): Promise<Matricula[]>;
     updateMatricula(id: string, dto: UpdateMatriculaDto): Promise<Matricula>;
     removeMatricula(id: string): Promise<void>;

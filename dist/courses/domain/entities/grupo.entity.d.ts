@@ -6,7 +6,7 @@ export declare class Grupo {
     nombre: string;
     codigo_grupo: string;
     docente: Docente;
-    docente_id: string;
+    docente_id: number;
     asignatura: Asignatura;
     asignatura_id: string;
     semestre: Semestre;

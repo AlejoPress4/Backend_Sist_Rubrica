@@ -1,7 +1,7 @@
 import { User } from './user.entity';
 import { Grupo } from '../../../courses/domain/entities/grupo.entity';
 export declare class Docente {
-    id: string;
+    id: number;
     nombre: string;
     apellido: string;
     telefono: string;

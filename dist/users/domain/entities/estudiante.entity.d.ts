@@ -2,7 +2,7 @@ import { User } from './user.entity';
 import { Inscripcion } from '../../../courses/domain/entities/inscripcion.entity';
 import { Matricula } from '../../../academic/domain/entities/matricula.entity';
 export declare class Estudiante {
-    id: string;
+    id: number;
     nombre: string;
     apellido: string;
     cedula: string;

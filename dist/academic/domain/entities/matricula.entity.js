@@ -36,7 +36,7 @@ __decorate([
 ], Matricula.prototype, "periodo_ingreso", void 0);
 __decorate([
     (0, typeorm_1.Column)({
-        type: 'enum',
+        type: 'simple-enum',
         enum: constants_1.EstadoMatricula,
         default: constants_1.EstadoMatricula.ACTIVO
     }),
@@ -48,8 +48,8 @@ __decorate([
     __metadata("design:type", estudiante_entity_1.Estudiante)
 ], Matricula.prototype, "estudiante", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
 ], Matricula.prototype, "estudiante_id", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => carrera_entity_1.Carrera, (carrera) => carrera.matriculas),

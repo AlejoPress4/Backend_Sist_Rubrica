@@ -30,7 +30,7 @@ export declare class AcademicController {
     createMatricula(dto: CreateMatriculaDto): Promise<ApiResponseDto<import("../../domain/entities/matricula.entity").Matricula>>;
     findAllMatriculas(): Promise<ApiResponseDto<import("../../domain/entities/matricula.entity").Matricula[]>>;
     findMatriculaById(id: string): Promise<ApiResponseDto<import("../../domain/entities/matricula.entity").Matricula>>;
-    findMatriculasByEstudiante(estudiante_id: string): Promise<ApiResponseDto<import("../../domain/entities/matricula.entity").Matricula[]>>;
+    findMatriculasByEstudiante(estudiante_id: number): Promise<ApiResponseDto<import("../../domain/entities/matricula.entity").Matricula[]>>;
     findMatriculasByCarrera(carrera_id: string): Promise<ApiResponseDto<import("../../domain/entities/matricula.entity").Matricula[]>>;
     updateMatricula(id: string, dto: UpdateMatriculaDto): Promise<ApiResponseDto<import("../../domain/entities/matricula.entity").Matricula>>;
     removeMatricula(id: string): Promise<ApiResponseDto<null>>;

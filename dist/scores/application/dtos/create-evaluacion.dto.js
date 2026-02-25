@@ -14,6 +14,7 @@ const class_validator_1 = require("class-validator");
 class CreateEvaluacionDto {
     nombre;
     descripcion;
+    nota;
     asignatura_id;
     rubrica_id;
 }
@@ -28,6 +29,13 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateEvaluacionDto.prototype, "descripcion", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)({ maxDecimalPlaces: 2 }),
+    (0, class_validator_1.Min)(0),
+    (0, class_validator_1.Max)(5),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateEvaluacionDto.prototype, "nota", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),

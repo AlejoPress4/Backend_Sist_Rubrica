@@ -20,7 +20,7 @@ export declare class ScoresController {
     findAllNotas(): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota[]>>;
     findNotaById(id: string): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota>>;
     findNotasByInscripcion(inscripcion_id: string): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota[]>>;
-    findNotasByEstudiante(estudiante_id: string): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota[]>>;
+    findNotasByEstudiante(estudiante_id: number): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota[]>>;
     updateNota(id: string, dto: UpdateNotaDto): Promise<ApiResponseDto<import("../../domain/entities/nota.entity").Nota>>;
     removeNota(id: string): Promise<ApiResponseDto<null>>;
     createCalificacionDetalle(dto: CreateCalificacionDetalleDto): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle>>;

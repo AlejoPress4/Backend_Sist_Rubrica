@@ -18,14 +18,14 @@ export declare class CoursesController {
     findAllGrupos(): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo[]>>;
     findGrupoById(id: string): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo>>;
     findGruposBySemestre(semestre_id: string): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo[]>>;
-    findGruposByDocente(docente_id: string): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo[]>>;
+    findGruposByDocente(docente_id: number): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo[]>>;
     updateGrupo(id: string, dto: UpdateGrupoDto): Promise<ApiResponseDto<import("../../domain/entities/grupo.entity").Grupo>>;
     removeGrupo(id: string): Promise<ApiResponseDto<null>>;
     createInscripcion(dto: CreateInscripcionDto): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion>>;
     findAllInscripciones(): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion[]>>;
     findInscripcionById(id: string): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion>>;
     findInscripcionesByGrupo(grupo_id: string): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion[]>>;
-    findInscripcionesByEstudiante(estudiante_id: string): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion[]>>;
+    findInscripcionesByEstudiante(estudiante_id: number): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion[]>>;
     updateInscripcion(id: string, dto: UpdateInscripcionDto): Promise<ApiResponseDto<import("../../domain/entities/inscripcion.entity").Inscripcion>>;
     removeInscripcion(id: string): Promise<ApiResponseDto<null>>;
 }

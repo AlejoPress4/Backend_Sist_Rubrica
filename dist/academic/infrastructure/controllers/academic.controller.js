@@ -257,9 +257,9 @@ __decorate([
 ], AcademicController.prototype, "findMatriculaById", null);
 __decorate([
     (0, common_1.Get)('estudiantes/:estudiante_id/matriculas'),
-    __param(0, (0, common_1.Param)('estudiante_id')),
+    __param(0, (0, common_1.Param)('estudiante_id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], AcademicController.prototype, "findMatriculasByEstudiante", null);
 __decorate([

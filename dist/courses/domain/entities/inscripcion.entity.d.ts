@@ -7,7 +7,7 @@ export declare class Inscripcion {
     fecha_inscripcion: Date;
     estado: EstadoInscripcion;
     estudiante: Estudiante;
-    estudiante_id: string;
+    estudiante_id: number;
     grupo: Grupo;
     grupo_id: string;
     notas: Nota[];

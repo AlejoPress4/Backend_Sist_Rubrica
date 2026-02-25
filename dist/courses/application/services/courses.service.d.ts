@@ -23,14 +23,14 @@ export declare class CoursesService implements ICoursesService {
     findAllGrupos(): Promise<Grupo[]>;
     findGrupoById(id: string): Promise<Grupo>;
     findGruposBySemestre(semestre_id: string): Promise<Grupo[]>;
-    findGruposByDocente(docente_id: string): Promise<Grupo[]>;
+    findGruposByDocente(docente_id: number): Promise<Grupo[]>;
     updateGrupo(id: string, dto: UpdateGrupoDto): Promise<Grupo>;
     removeGrupo(id: string): Promise<void>;
     createInscripcion(dto: CreateInscripcionDto): Promise<Inscripcion>;
     findAllInscripciones(): Promise<Inscripcion[]>;
     findInscripcionById(id: string): Promise<Inscripcion>;
     findInscripcionesByGrupo(grupo_id: string): Promise<Inscripcion[]>;
-    findInscripcionesByEstudiante(estudiante_id: string): Promise<Inscripcion[]>;
+    findInscripcionesByEstudiante(estudiante_id: number): Promise<Inscripcion[]>;
     updateInscripcion(id: string, dto: UpdateInscripcionDto): Promise<Inscripcion>;
     removeInscripcion(id: string): Promise<void>;
 }

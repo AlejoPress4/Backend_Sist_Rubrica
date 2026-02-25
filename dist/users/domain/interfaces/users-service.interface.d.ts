@@ -15,15 +15,15 @@ export interface IUsersService {
     updateUser(id: string, dto: UpdateUserDto): Promise<User>;
     removeUser(id: string): Promise<void>;
     findAllDocentes(): Promise<Docente[]>;
-    findDocenteById(id: string): Promise<Docente>;
+    findDocenteById(id: number): Promise<Docente>;
     findDocenteByUserId(user_id: string): Promise<Docente>;
     createDocente(dto: CreateDocenteDto): Promise<Docente>;
-    updateDocente(id: string, dto: UpdateDocenteDto): Promise<Docente>;
-    removeDocente(id: string): Promise<void>;
+    updateDocente(id: number, dto: UpdateDocenteDto): Promise<Docente>;
+    removeDocente(id: number): Promise<void>;
     findAllEstudiantes(): Promise<Estudiante[]>;
-    findEstudianteById(id: string): Promise<Estudiante>;
+    findEstudianteById(id: number): Promise<Estudiante>;
     findEstudianteByUserId(user_id: string): Promise<Estudiante>;
     createEstudiante(dto: CreateEstudianteDto): Promise<Estudiante>;
-    updateEstudiante(id: string, dto: UpdateEstudianteDto): Promise<Estudiante>;
-    removeEstudiante(id: string): Promise<void>;
+    updateEstudiante(id: number, dto: UpdateEstudianteDto): Promise<Estudiante>;
+    removeEstudiante(id: number): Promise<void>;
 }

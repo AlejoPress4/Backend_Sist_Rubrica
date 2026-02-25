@@ -169,9 +169,9 @@ __decorate([
 ], CoursesController.prototype, "findGruposBySemestre", null);
 __decorate([
     (0, common_1.Get)('docentes/:docente_id/grupos'),
-    __param(0, (0, common_1.Param)('docente_id')),
+    __param(0, (0, common_1.Param)('docente_id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], CoursesController.prototype, "findGruposByDocente", null);
 __decorate([
@@ -218,9 +218,9 @@ __decorate([
 ], CoursesController.prototype, "findInscripcionesByGrupo", null);
 __decorate([
     (0, common_1.Get)('estudiantes/:estudiante_id/inscripciones'),
-    __param(0, (0, common_1.Param)('estudiante_id')),
+    __param(0, (0, common_1.Param)('estudiante_id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], CoursesController.prototype, "findInscripcionesByEstudiante", null);
 __decorate([

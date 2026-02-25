@@ -1,12 +1,25 @@
 import { registerAs } from '@nestjs/config';
 
-export default registerAs('database', () => ({
-    type: 'postgres' as const,
-    host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT!, 10),
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    autoLoadEntities: true,
-    synchronize: process.env.NODE_ENV !== 'production',
-}));
+export default registerAs('database', () => {
+    const dbType = process.env.DB_TYPE;
+
+    if (dbType === 'sqlite') {
+        return {
+            type: 'better-sqlite3' as const,
+            database: process.env.DB_SQLITE_PATH || './rubrica.db',
+            autoLoadEntities: true,
+            synchronize: process.env.NODE_ENV !== 'production',
+        };
+    }
+
+    return {
+        type: 'postgres' as const,
+        host: process.env.DB_HOST,
+        port: parseInt(process.env.DB_PORT!, 10),
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
+        autoLoadEntities: true,
+        synchronize: process.env.NODE_ENV !== 'production',
+    };
+});

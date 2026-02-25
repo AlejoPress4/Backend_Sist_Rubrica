@@ -6,7 +6,7 @@ export declare class Matricula {
     periodo_ingreso: string;
     estado_academico: EstadoMatricula;
     estudiante: Estudiante;
-    estudiante_id: string;
+    estudiante_id: number;
     carrera: Carrera;
     carrera_id: string;
     created_at: Date;

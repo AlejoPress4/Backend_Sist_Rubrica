@@ -46,8 +46,8 @@ __decorate([
     __metadata("design:type", docente_entity_1.Docente)
 ], Grupo.prototype, "docente", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
 ], Grupo.prototype, "docente_id", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => asignatura_entity_1.Asignatura, asignatura => asignatura.grupos, { eager: true }),

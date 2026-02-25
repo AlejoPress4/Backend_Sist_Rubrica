@@ -17,6 +17,7 @@ let Evaluacion = class Evaluacion {
     id;
     nombre;
     descripcion;
+    nota;
     asignatura;
     asignatura_id;
     rubrica;
@@ -37,6 +38,10 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Evaluacion.prototype, "descripcion", void 0);
+__decorate([
+    (0, typeorm_1.Column)('decimal', { precision: 5, scale: 2 }),
+    __metadata("design:type", Number)
+], Evaluacion.prototype, "nota", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => asignatura_entity_1.Asignatura, { eager: true }),
     (0, typeorm_1.JoinColumn)({ name: 'asignatura_id' }),

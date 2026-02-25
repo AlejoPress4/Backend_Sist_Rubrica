@@ -37,7 +37,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Inscripcion.prototype, "fecha_inscripcion", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'enum', enum: constants_1.EstadoInscripcion, default: constants_1.EstadoInscripcion.ACTIVO }),
+    (0, typeorm_1.Column)({ type: 'simple-enum', enum: constants_1.EstadoInscripcion, default: constants_1.EstadoInscripcion.ACTIVO }),
     __metadata("design:type", String)
 ], Inscripcion.prototype, "estado", void 0);
 __decorate([
@@ -46,8 +46,8 @@ __decorate([
     __metadata("design:type", estudiante_entity_1.Estudiante)
 ], Inscripcion.prototype, "estudiante", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
 ], Inscripcion.prototype, "estudiante_id", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => grupo_entity_1.Grupo, { eager: true }),

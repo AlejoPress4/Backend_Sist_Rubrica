@@ -39,8 +39,8 @@ __decorate([
     __metadata("design:type", String)
 ], Nota.prototype, "observaciones", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
 ], Nota.prototype, "estudiante_id", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => inscripcion_entity_1.Inscripcion, inscripcion => inscripcion.notas),

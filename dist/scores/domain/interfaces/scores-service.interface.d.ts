@@ -19,7 +19,7 @@ export interface IScoresService {
     findAllNotas(): Promise<Nota[]>;
     findNotaById(id: string): Promise<Nota>;
     findNotasByInscripcion(inscripcion_id: string): Promise<Nota[]>;
-    findNotasByEstudiante(estudiante_id: string): Promise<Nota[]>;
+    findNotasByEstudiante(estudiante_id: number): Promise<Nota[]>;
     updateNota(id: string, dto: UpdateNotaDto): Promise<Nota>;
     removeNota(id: string): Promise<void>;
     createCalificacionDetalle(dto: CreateCalificacionDetalleDto): Promise<CalificacionDetalle>;

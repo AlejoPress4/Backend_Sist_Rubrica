@@ -40,7 +40,7 @@ __decorate([
     __metadata("design:type", Number)
 ], User.prototype, "codigo", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'enum', enum: constants_1.UserRole }),
+    (0, typeorm_1.Column)({ type: 'simple-enum', enum: constants_1.UserRole }),
     __metadata("design:type", String)
 ], User.prototype, "rol", void 0);
 __decorate([

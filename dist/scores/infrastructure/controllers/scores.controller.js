@@ -183,9 +183,9 @@ __decorate([
 ], ScoresController.prototype, "findNotasByInscripcion", null);
 __decorate([
     (0, common_1.Get)('estudiantes/:estudiante_id/notas'),
-    __param(0, (0, common_1.Param)('estudiante_id')),
+    __param(0, (0, common_1.Param)('estudiante_id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ScoresController.prototype, "findNotasByEstudiante", null);
 __decorate([

@@ -147,9 +147,9 @@ __decorate([
 ], UsersController.prototype, "findAllDocentes", null);
 __decorate([
     (0, common_1.Get)('docentes/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findDocenteById", null);
 __decorate([
@@ -161,17 +161,17 @@ __decorate([
 ], UsersController.prototype, "findDocenteByUserId", null);
 __decorate([
     (0, common_1.Put)('docentes/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_docente_dto_1.UpdateDocenteDto]),
+    __metadata("design:paramtypes", [Number, update_docente_dto_1.UpdateDocenteDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateDocente", null);
 __decorate([
     (0, common_1.Delete)('docentes/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "removeDocente", null);
 __decorate([
@@ -189,9 +189,9 @@ __decorate([
 ], UsersController.prototype, "findAllEstudiantes", null);
 __decorate([
     (0, common_1.Get)('estudiantes/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findEstudianteById", null);
 __decorate([
@@ -203,17 +203,17 @@ __decorate([
 ], UsersController.prototype, "findEstudianteByUserId", null);
 __decorate([
     (0, common_1.Put)('estudiantes/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_estudiante_dto_1.UpdateEstudianteDto]),
+    __metadata("design:paramtypes", [Number, update_estudiante_dto_1.UpdateEstudianteDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateEstudiante", null);
 __decorate([
     (0, common_1.Delete)('estudiantes/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "removeEstudiante", null);
 exports.UsersController = UsersController = __decorate([

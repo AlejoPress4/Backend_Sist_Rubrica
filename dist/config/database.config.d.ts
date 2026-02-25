@@ -1,4 +1,13 @@
 declare const _default: (() => {
+    type: "better-sqlite3";
+    database: string;
+    autoLoadEntities: boolean;
+    synchronize: boolean;
+    host?: undefined;
+    port?: undefined;
+    username?: undefined;
+    password?: undefined;
+} | {
     type: "postgres";
     host: string | undefined;
     port: number;
@@ -8,6 +17,15 @@ declare const _default: (() => {
     autoLoadEntities: boolean;
     synchronize: boolean;
 }) & import("@nestjs/config").ConfigFactoryKeyHost<{
+    type: "better-sqlite3";
+    database: string;
+    autoLoadEntities: boolean;
+    synchronize: boolean;
+    host?: undefined;
+    port?: undefined;
+    username?: undefined;
+    password?: undefined;
+} | {
     type: "postgres";
     host: string | undefined;
     port: number;

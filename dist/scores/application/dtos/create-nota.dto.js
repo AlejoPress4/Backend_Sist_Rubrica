@@ -20,7 +20,7 @@ class CreateNotaDto {
 }
 exports.CreateNotaDto = CreateNotaDto;
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNumber)({ maxDecimalPlaces: 2 }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], CreateNotaDto.prototype, "nota_final", void 0);
@@ -30,9 +30,9 @@ __decorate([
     __metadata("design:type", String)
 ], CreateNotaDto.prototype, "observaciones", void 0);
 __decorate([
-    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsInt)(),
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], CreateNotaDto.prototype, "estudiante_id", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),

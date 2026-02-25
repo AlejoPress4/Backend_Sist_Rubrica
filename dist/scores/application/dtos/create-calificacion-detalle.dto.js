@@ -18,7 +18,9 @@ class CreateCalificacionDetalleDto {
 }
 exports.CreateCalificacionDetalleDto = CreateCalificacionDetalleDto;
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNumber)({ maxDecimalPlaces: 2 }),
+    (0, class_validator_1.Min)(0),
+    (0, class_validator_1.Max)(5),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], CreateCalificacionDetalleDto.prototype, "puntaje", void 0);

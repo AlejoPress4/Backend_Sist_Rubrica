@@ -4,6 +4,7 @@ export declare class Evaluacion {
     id: string;
     nombre: string;
     descripcion: string;
+    nota: number;
     asignatura: Asignatura;
     asignatura_id: string;
     rubrica: Rubrica;

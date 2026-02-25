@@ -4,7 +4,7 @@ export declare class Nota {
     id: string;
     nota_final: number;
     observaciones: string;
-    estudiante_id: string;
+    estudiante_id: number;
     inscripcion: Inscripcion;
     inscripcion_id: string;
     rubrica: Rubrica;

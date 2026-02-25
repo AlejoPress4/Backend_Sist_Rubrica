@@ -30,9 +30,9 @@ __decorate([
     __metadata("design:type", String)
 ], CreateGrupoDto.prototype, "codigo_grupo", void 0);
 __decorate([
-    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsInt)(),
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], CreateGrupoDto.prototype, "docente_id", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
