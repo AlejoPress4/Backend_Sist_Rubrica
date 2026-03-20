@@ -1,17 +1,17 @@
 import { IsNumber, IsOptional, IsString, IsUUID, Max, Min } from 'class-validator';
 
 export class CreateCalificacionDetalleDto {
-    @IsNumber({ maxDecimalPlaces: 2 })
-    @Min(0)
-    @Max(5)
+    @IsNumber({ maxDecimalPlaces: 2 }, { message: 'El puntaje debe ser un número con máximo 2 decimales' })
+    @Min(0, { message: 'El puntaje mínimo es 0' })
+    @Max(5, { message: 'El puntaje máximo es 5' })
     @IsOptional()
     puntaje?: number;
 
-    @IsString()
+    @IsString({ message: 'El comentario debe ser un texto' })
     @IsOptional()
     comentario?: string;
 
-    @IsUUID()
+    @IsUUID('4', { message: 'El escala_id debe ser un UUID v4 válido' })
     @IsOptional()
     escala_id?: string;
 }
