@@ -27,4 +27,5 @@ export interface IScoresService {
     findDetalleById(id: string): Promise<CalificacionDetalle>;
     updateCalificacionDetalle(id: string, dto: UpdateCalificacionDetalleDto): Promise<CalificacionDetalle>;
     removeCalificacionDetalle(id: string): Promise<void>;
+    findDetallesByEstudiante(estudiante_id: number): Promise<CalificacionDetalle[]>;
 }

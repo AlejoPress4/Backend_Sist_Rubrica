@@ -12,23 +12,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateCarreraDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateCarreraDto {
-    nombre;
     codigo;
+    nombre;
     descripcion;
 }
 exports.CreateCarreraDto = CreateCarreraDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateCarreraDto.prototype, "nombre", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)({ message: 'El código debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El código es obligatorio' }),
+    (0, class_validator_1.MaxLength)(20),
     __metadata("design:type", String)
 ], CreateCarreraDto.prototype, "codigo", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'El nombre de la carrera debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El nombre de la carrera es obligatorio' }),
+    __metadata("design:type", String)
+], CreateCarreraDto.prototype, "nombre", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'La descripción debe ser un texto' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateCarreraDto.prototype, "descripcion", void 0);

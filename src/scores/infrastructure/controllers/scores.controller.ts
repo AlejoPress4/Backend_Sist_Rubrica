@@ -120,6 +120,18 @@ export class ScoresController {
         return ApiResponseDto.success(data);
     }
 
+    @Get('estudiantes/:estudiante_id/calificacion-detalles')
+    async findDetallesByEstudiante(@Param('estudiante_id', ParseIntPipe) estudiante_id: number) {
+        const data = await this.scoresService.findDetallesByEstudiante(estudiante_id);
+        return ApiResponseDto.success(data);
+    }
+
+    @Get('estudiantes/:estudiante_id/promedio')
+    async findPromedioByEstudiante(@Param('estudiante_id', ParseIntPipe) estudiante_id: number) {
+        const data = await this.scoresService.findPromedioByEstudiante(estudiante_id);
+        return ApiResponseDto.success(data);
+    }
+
     @Put('calificacion-detalles/:id')
     async updateCalificacionDetalle(@Param('id') id: string, @Body() dto: UpdateCalificacionDetalleDto) {
         const data = await this.scoresService.updateCalificacionDetalle(id, dto);

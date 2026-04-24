@@ -1,4 +1,12 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateGrupoDto } from './create-grupo.dto';
+import { IsOptional, IsString, MaxLength } from 'class-validator';
 
-export class UpdateGrupoDto extends PartialType(CreateGrupoDto) {}
+export class UpdateGrupoDto {
+    @IsString()
+    @MaxLength(20)
+    @IsOptional()
+    codigo?: string;
+
+    @IsString()
+    @IsOptional()
+    nombre?: string;
+}

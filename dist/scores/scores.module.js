@@ -14,12 +14,16 @@ const nota_entity_1 = require("./domain/entities/nota.entity");
 const calificacion_detalle_entity_1 = require("./domain/entities/calificacion-detalle.entity");
 const scores_service_1 = require("./application/services/scores.service");
 const scores_controller_1 = require("./infrastructure/controllers/scores.controller");
+const rubrics_module_1 = require("../rubrics/rubrics.module");
 let ScoresModule = class ScoresModule {
 };
 exports.ScoresModule = ScoresModule;
 exports.ScoresModule = ScoresModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([evaluacion_entity_1.Evaluacion, nota_entity_1.Nota, calificacion_detalle_entity_1.CalificacionDetalle])],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([evaluacion_entity_1.Evaluacion, nota_entity_1.Nota, calificacion_detalle_entity_1.CalificacionDetalle]),
+            rubrics_module_1.RubricsModule,
+        ],
         controllers: [scores_controller_1.ScoresController],
         providers: [scores_service_1.ScoresService],
         exports: [scores_service_1.ScoresService],

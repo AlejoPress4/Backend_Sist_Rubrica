@@ -3,13 +3,10 @@ import { Grupo } from '../../../courses/domain/entities/grupo.entity';
 export declare class Docente {
     id: number;
     nombre: string;
-    apellido: string;
-    telefono: string;
-    cedula: string;
-    especialidad: string;
+    titulo: string;
     user: User;
-    user_id: string;
+    userId: string;
     grupos: Grupo[];
-    created_at: Date;
-    updated_at: Date;
+    creadoEn: Date;
+    actualizadoEn: Date;
 }

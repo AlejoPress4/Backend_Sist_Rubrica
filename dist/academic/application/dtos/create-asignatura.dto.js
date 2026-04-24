@@ -12,29 +12,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateAsignaturaDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateAsignaturaDto {
-    nombre;
     codigo;
+    nombre;
     descripcion;
     creditos;
 }
 exports.CreateAsignaturaDto = CreateAsignaturaDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateAsignaturaDto.prototype, "nombre", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)({ message: 'El código debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El código es obligatorio' }),
+    (0, class_validator_1.MaxLength)(20),
     __metadata("design:type", String)
 ], CreateAsignaturaDto.prototype, "codigo", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'El nombre de la asignatura debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El nombre de la asignatura es obligatorio' }),
+    __metadata("design:type", String)
+], CreateAsignaturaDto.prototype, "nombre", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'La descripción debe ser un texto' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateAsignaturaDto.prototype, "descripcion", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsInt)({ message: 'Los créditos deben ser un número entero' }),
+    (0, class_validator_1.Min)(1),
+    (0, class_validator_1.Max)(10),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], CreateAsignaturaDto.prototype, "creditos", void 0);

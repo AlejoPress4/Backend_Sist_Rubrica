@@ -1,30 +1,40 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    OneToMany,
+} from 'typeorm';
 import { PlanEstudio } from './plan-estudio.entity';
-import { Matricula } from './matricula.entity';
+import { Semestre } from './semestre.entity';
 
 @Entity('carreras')
 export class Carrera {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @Column({ unique: true })
+    codigo: string;
+
     @Column()
     nombre: string;
 
     @Column({ nullable: true })
-    codigo: string;
-
-    @Column({ nullable: true })
     descripcion: string;
 
-    @OneToMany(() => PlanEstudio, planes => planes.carrera)
-    planes: PlanEstudio[];
+    @Column({ default: false })
+    archivada: boolean;
 
-    @OneToMany(() => Matricula, matricula => matricula.carrera)
-    matriculas: Matricula[];
+    @OneToMany(() => PlanEstudio, (plan) => plan.carrera)
+    planes_estudio: PlanEstudio[];
+
+    @OneToMany(() => Semestre, (semestre) => semestre.carrera)
+    semestres: Semestre[];
 
     @CreateDateColumn()
-    created_at: Date;
+    creadoEn: Date;
 
     @UpdateDateColumn()
-    updated_at: Date;
+    actualizadoEn: Date;
 }

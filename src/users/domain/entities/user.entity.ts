@@ -1,5 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { UserRole } from '../../../common/constants/constants';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    OneToOne,
+} from 'typeorm';
+import { Rol } from '../../../common/enums';
+import { Docente } from './docente.entity';
+import { Estudiante } from './estudiante.entity';
 
 @Entity('users')
 export class User {
@@ -7,24 +16,26 @@ export class User {
     id: string;
 
     @Column({ unique: true })
-    email: string;
+    correoInstitucional: string;
 
-    @Column()
+    @Column({ select: false })
     password: string;
 
-    @Column()
-    codigo: number;
-
-    @Column({ type: 'simple-enum', enum: UserRole })
-    rol: UserRole;
+    @Column({ type: 'simple-enum', enum: Rol })
+    rol: Rol;
 
     @Column({ default: true })
-    is_active: boolean;i
-    //i es una propiedad que indica si el usuario está activo o no, por defecto es true
+    activo: boolean;
+
+    @OneToOne(() => Docente, (docente) => docente.user)
+    docente?: Docente;
+
+    @OneToOne(() => Estudiante, (estudiante) => estudiante.user)
+    estudiante?: Estudiante;
 
     @CreateDateColumn()
-    created_at: Date;
+    creadoEn: Date;
 
     @UpdateDateColumn()
-    updated_at: Date;
+    actualizadoEn: Date;
 }

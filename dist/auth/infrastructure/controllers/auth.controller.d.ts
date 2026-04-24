@@ -1,9 +1,8 @@
 import { AuthService } from '../../application/services/auth.service';
 import { LoginDto } from '../../application/dtos/login.dto';
-import { RegisterDto } from '../../application/dtos/register.dto';
+import { ApiResponseDto } from '../../../common/dtos/api-response.dto';
 export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
-    login(loginDto: LoginDto): Promise<void>;
-    register(registerDto: RegisterDto): Promise<void>;
+    login(dto: LoginDto): Promise<ApiResponseDto<import("../../application/dtos/auth-response.dto").AuthResponseDto>>;
 }

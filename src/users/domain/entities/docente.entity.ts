@@ -1,44 +1,40 @@
 import {
-    Entity, PrimaryGeneratedColumn, Column,
-    OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToMany
+    Entity,
+    PrimaryColumn,
+    Column,
+    OneToOne,
+    JoinColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
+    ManyToMany,
 } from 'typeorm';
 import { User } from './user.entity';
 import { Grupo } from '../../../courses/domain/entities/grupo.entity';
 
 @Entity('docentes')
 export class Docente {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn({ type: 'int' })
     id: number;
 
     @Column()
     nombre: string;
 
-    @Column()
-    apellido: string;
-
     @Column({ nullable: true })
-    telefono: string;
+    titulo: string;
 
-    @Column({ nullable: true })
-    cedula: string;
-
-    @Column({ nullable: true })
-    especialidad: string;
-
-    @OneToOne(() => User, { eager: true })
-    @JoinColumn({ name: 'user_id' })
+    @OneToOne(() => User, (user) => user.docente, { onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'userId' })
     user: User;
 
     @Column()
-    user_id: string;
+    userId: string;
 
-    //Relación hacia Grupo
-    @OneToMany(() => Grupo, grupo => grupo.docente)
+    @ManyToMany(() => Grupo, (grupo) => grupo.docentes)
     grupos: Grupo[];
 
     @CreateDateColumn()
-    created_at: Date;
+    creadoEn: Date;
 
     @UpdateDateColumn()
-    updated_at: Date;
+    actualizadoEn: Date;
 }

@@ -4,6 +4,7 @@ export declare class Criterio {
     id: string;
     nombre: string;
     descripcion: string;
+    peso: number;
     rubrica: Rubrica;
     rubrica_id: string;
     escalas: Escala[];

@@ -11,17 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Nota = void 0;
 const typeorm_1 = require("typeorm");
-const inscripcion_entity_1 = require("../../../courses/domain/entities/inscripcion.entity");
-const rubrica_entity_1 = require("../../../rubrics/domain/entities/rubrica.entity");
+const estudiante_entity_1 = require("../../../users/domain/entities/estudiante.entity");
+const grupo_entity_1 = require("../../../courses/domain/entities/grupo.entity");
 let Nota = class Nota {
     id;
     nota_final;
     observaciones;
+    estudiante;
     estudiante_id;
-    inscripcion;
-    inscripcion_id;
-    rubrica;
-    rubrica_id;
+    grupo;
+    grupo_id;
+    oficial;
+    fecha_registro;
     created_at;
     updated_at;
 };
@@ -39,27 +40,31 @@ __decorate([
     __metadata("design:type", String)
 ], Nota.prototype, "observaciones", void 0);
 __decorate([
+    (0, typeorm_1.ManyToOne)(() => estudiante_entity_1.Estudiante),
+    (0, typeorm_1.JoinColumn)({ name: 'estudiante_id' }),
+    __metadata("design:type", estudiante_entity_1.Estudiante)
+], Nota.prototype, "estudiante", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'int' }),
     __metadata("design:type", Number)
 ], Nota.prototype, "estudiante_id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => inscripcion_entity_1.Inscripcion, inscripcion => inscripcion.notas),
-    (0, typeorm_1.JoinColumn)({ name: 'inscripcion_id' }),
-    __metadata("design:type", inscripcion_entity_1.Inscripcion)
-], Nota.prototype, "inscripcion", void 0);
+    (0, typeorm_1.ManyToOne)(() => grupo_entity_1.Grupo),
+    (0, typeorm_1.JoinColumn)({ name: 'grupo_id' }),
+    __metadata("design:type", grupo_entity_1.Grupo)
+], Nota.prototype, "grupo", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], Nota.prototype, "inscripcion_id", void 0);
+], Nota.prototype, "grupo_id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => rubrica_entity_1.Rubrica, rubrica => rubrica.notas),
-    (0, typeorm_1.JoinColumn)({ name: 'rubrica_id' }),
-    __metadata("design:type", rubrica_entity_1.Rubrica)
-], Nota.prototype, "rubrica", void 0);
+    (0, typeorm_1.Column)({ default: false }),
+    __metadata("design:type", Boolean)
+], Nota.prototype, "oficial", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Nota.prototype, "rubrica_id", void 0);
+    (0, typeorm_1.Column)({ type: 'timestamp', nullable: true }),
+    __metadata("design:type", Date)
+], Nota.prototype, "fecha_registro", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

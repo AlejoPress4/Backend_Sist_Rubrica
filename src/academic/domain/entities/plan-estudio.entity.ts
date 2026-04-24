@@ -1,38 +1,48 @@
 import {
-    Entity, PrimaryGeneratedColumn, Column,
-    ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne,
+    JoinColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
+    OneToMany,
+    Index,
 } from 'typeorm';
 import { Carrera } from './carrera.entity';
-import { Asignatura } from './asignatura.entity';
+import { PlanAsignatura } from './plan-asignatura.entity';
 
 @Entity('planes_estudio')
+@Index(['carrera_id', 'version'], { unique: true })
 export class PlanEstudio {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ nullable: true })
-    nombre: string;
+    @Column({ type: 'int', default: 1 })
+    version: number;
 
-    @Column({ nullable: true })
-    anio: number;
+    @Column({ default: false })
+    publicado: boolean;
 
-    @ManyToOne(() => Carrera, carrera => carrera.planes)
+    @Column({ default: false })
+    vigente: boolean;
+
+    @Column({ type: 'datetime', nullable: true })
+    fechaPublicacion: Date | null;
+
+    @ManyToOne(() => Carrera, (carrera) => carrera.planes_estudio, { onDelete: 'RESTRICT' })
     @JoinColumn({ name: 'carrera_id' })
     carrera: Carrera;
 
     @Column()
     carrera_id: string;
 
-    @ManyToOne(() => Asignatura, { eager: true })
-    @JoinColumn({ name: 'asignatura_id' })
-    asignatura: Asignatura;
-
-    @Column()
-    asignatura_id: string;
+    @OneToMany(() => PlanAsignatura, (pa) => pa.planEstudio, { cascade: true })
+    asignaturas: PlanAsignatura[];
 
     @CreateDateColumn()
-    created_at: Date;
+    creadoEn: Date;
 
     @UpdateDateColumn()
-    updated_at: Date;
+    actualizadoEn: Date;
 }

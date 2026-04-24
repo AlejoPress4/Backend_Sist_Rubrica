@@ -20,24 +20,24 @@ class CreateEscalaDto {
 }
 exports.CreateEscalaDto = CreateEscalaDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)({ message: 'El nombre de la escala debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El nombre de la escala es obligatorio' }),
     __metadata("design:type", String)
 ], CreateEscalaDto.prototype, "nombre", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'La descripción de la escala debe ser un texto' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateEscalaDto.prototype, "descripcion", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNumber)({}, { message: 'El valor debe ser un número' }),
     (0, class_transformer_1.Type)(() => Number),
     __metadata("design:type", Number)
 ], CreateEscalaDto.prototype, "valor", void 0);
 __decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsUUID)('4', { message: 'El criterio_id debe ser un UUID v4 válido' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El criterio_id es obligatorio' }),
     __metadata("design:type", String)
 ], CreateEscalaDto.prototype, "criterio_id", void 0);
 //# sourceMappingURL=create-escala.dto.js.map

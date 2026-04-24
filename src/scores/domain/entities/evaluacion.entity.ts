@@ -1,9 +1,10 @@
 import {
     Entity, PrimaryGeneratedColumn, Column,
-    ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
+    ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToMany
 } from 'typeorm';
 import { Asignatura } from '../../../academic/domain/entities/asignatura.entity';
 import { Rubrica } from '../../../rubrics/domain/entities/rubrica.entity';
+import { CalificacionDetalle } from './calificacion-detalle.entity';
 
 @Entity('evaluaciones')
 export class Evaluacion {
@@ -16,8 +17,11 @@ export class Evaluacion {
     @Column({ nullable: true })
     descripcion: string;
 
-    @Column('decimal', { precision: 5, scale: 2 })
+    @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
     nota: number;
+
+    @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
+    peso: number;
 
     @ManyToOne(() => Asignatura, { eager: true })
     @JoinColumn({ name: 'asignatura_id' })
@@ -30,6 +34,9 @@ export class Evaluacion {
     rubrica: Rubrica;
     @Column()
     rubrica_id: string;
+
+    @OneToMany(() => CalificacionDetalle, detalle => detalle.evaluacion)
+    calificacionDetalles: CalificacionDetalle[];
 
     @CreateDateColumn()
     created_at: Date;

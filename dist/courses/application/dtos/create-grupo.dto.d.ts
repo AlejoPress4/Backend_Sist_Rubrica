@@ -1,7 +1,7 @@
 export declare class CreateGrupoDto {
+    codigo: string;
     nombre?: string;
-    codigo_grupo: string;
-    docente_id: number;
+    docentesIds: number[];
     asignatura_id: string;
     semestre_id: string;
 }

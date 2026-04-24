@@ -12,36 +12,38 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateGrupoDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateGrupoDto {
+    codigo;
     nombre;
-    codigo_grupo;
-    docente_id;
+    docentesIds;
     asignatura_id;
     semestre_id;
 }
 exports.CreateGrupoDto = CreateGrupoDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'El código del grupo debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El código del grupo es obligatorio' }),
+    (0, class_validator_1.MaxLength)(20),
+    __metadata("design:type", String)
+], CreateGrupoDto.prototype, "codigo", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'El nombre debe ser un texto' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateGrupoDto.prototype, "nombre", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateGrupoDto.prototype, "codigo_grupo", void 0);
+    (0, class_validator_1.IsArray)({ message: 'docentesIds debe ser un arreglo' }),
+    (0, class_validator_1.ArrayNotEmpty)({ message: 'Debe asignarse al menos un docente al grupo' }),
+    (0, class_validator_1.IsInt)({ each: true, message: 'Cada id de docente debe ser un número entero' }),
+    __metadata("design:type", Array)
+], CreateGrupoDto.prototype, "docentesIds", void 0);
 __decorate([
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], CreateGrupoDto.prototype, "docente_id", void 0);
-__decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsUUID)('4', { message: 'El asignatura_id debe ser un UUID v4 válido' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El asignatura_id es obligatorio' }),
     __metadata("design:type", String)
 ], CreateGrupoDto.prototype, "asignatura_id", void 0);
 __decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsUUID)('4', { message: 'El semestre_id debe ser un UUID v4 válido' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El semestre_id es obligatorio' }),
     __metadata("design:type", String)
 ], CreateGrupoDto.prototype, "semestre_id", void 0);
 //# sourceMappingURL=create-grupo.dto.js.map

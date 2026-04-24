@@ -95,6 +95,14 @@ let ScoresController = class ScoresController {
         const data = await this.scoresService.findDetalleById(id);
         return api_response_dto_1.ApiResponseDto.success(data);
     }
+    async findDetallesByEstudiante(estudiante_id) {
+        const data = await this.scoresService.findDetallesByEstudiante(estudiante_id);
+        return api_response_dto_1.ApiResponseDto.success(data);
+    }
+    async findPromedioByEstudiante(estudiante_id) {
+        const data = await this.scoresService.findPromedioByEstudiante(estudiante_id);
+        return api_response_dto_1.ApiResponseDto.success(data);
+    }
     async updateCalificacionDetalle(id, dto) {
         const data = await this.scoresService.updateCalificacionDetalle(id, dto);
         return api_response_dto_1.ApiResponseDto.success(data, 'Calificación detalle actualizada exitosamente');
@@ -223,6 +231,20 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ScoresController.prototype, "findDetalleById", null);
+__decorate([
+    (0, common_1.Get)('estudiantes/:estudiante_id/calificacion-detalles'),
+    __param(0, (0, common_1.Param)('estudiante_id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ScoresController.prototype, "findDetallesByEstudiante", null);
+__decorate([
+    (0, common_1.Get)('estudiantes/:estudiante_id/promedio'),
+    __param(0, (0, common_1.Param)('estudiante_id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ScoresController.prototype, "findPromedioByEstudiante", null);
 __decorate([
     (0, common_1.Put)('calificacion-detalles/:id'),
     __param(0, (0, common_1.Param)('id')),

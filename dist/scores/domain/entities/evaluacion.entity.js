@@ -13,15 +13,18 @@ exports.Evaluacion = void 0;
 const typeorm_1 = require("typeorm");
 const asignatura_entity_1 = require("../../../academic/domain/entities/asignatura.entity");
 const rubrica_entity_1 = require("../../../rubrics/domain/entities/rubrica.entity");
+const calificacion_detalle_entity_1 = require("./calificacion-detalle.entity");
 let Evaluacion = class Evaluacion {
     id;
     nombre;
     descripcion;
     nota;
+    peso;
     asignatura;
     asignatura_id;
     rubrica;
     rubrica_id;
+    calificacionDetalles;
     created_at;
     updated_at;
 };
@@ -39,9 +42,13 @@ __decorate([
     __metadata("design:type", String)
 ], Evaluacion.prototype, "descripcion", void 0);
 __decorate([
-    (0, typeorm_1.Column)('decimal', { precision: 5, scale: 2 }),
+    (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2, default: 0 }),
     __metadata("design:type", Number)
 ], Evaluacion.prototype, "nota", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2, default: 0 }),
+    __metadata("design:type", Number)
+], Evaluacion.prototype, "peso", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => asignatura_entity_1.Asignatura, { eager: true }),
     (0, typeorm_1.JoinColumn)({ name: 'asignatura_id' }),
@@ -60,6 +67,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Evaluacion.prototype, "rubrica_id", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => calificacion_detalle_entity_1.CalificacionDetalle, detalle => detalle.evaluacion),
+    __metadata("design:type", Array)
+], Evaluacion.prototype, "calificacionDetalles", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

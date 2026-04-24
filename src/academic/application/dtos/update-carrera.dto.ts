@@ -1,4 +1,20 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateCarreraDto } from './create-carrera.dto';
+import { IsBoolean, IsOptional, IsString, MaxLength } from 'class-validator';
 
-export class UpdateCarreraDto extends PartialType(CreateCarreraDto) {}
+export class UpdateCarreraDto {
+    @IsString()
+    @MaxLength(20)
+    @IsOptional()
+    codigo?: string;
+
+    @IsString()
+    @IsOptional()
+    nombre?: string;
+
+    @IsString()
+    @IsOptional()
+    descripcion?: string;
+
+    @IsBoolean()
+    @IsOptional()
+    archivada?: boolean;
+}

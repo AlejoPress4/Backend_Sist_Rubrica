@@ -1,6 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn, JoinColumn } from 'typeorm';
 import { Criterio } from './criterio.entity';
-import { Nota } from '../../../scores/domain/entities/nota.entity';
 import { Evaluacion } from 'src/scores/domain/entities/evaluacion.entity';
 
 @Entity('rubricas')
@@ -20,9 +19,6 @@ export class Rubrica {
     //Relaciones 
     @OneToMany(() => Criterio, criterio => criterio.rubrica)
     criterios: Criterio[];
-
-    @OneToMany(() => Nota, nota => nota.rubrica)
-    notas: Nota[];
 
     @OneToMany(() => Evaluacion, evaluacion=> evaluacion.rubrica)
     evaluaciones: Evaluacion[];

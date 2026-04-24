@@ -1,8 +1,10 @@
-import { UserRole } from '../../../common/constants/constants';
+import { Rol } from '../../../common/enums';
 export declare class CreateUserDto {
-    email: string;
+    correoInstitucional: string;
     password: string;
-    codigo: number;
-    rol: UserRole;
-    is_active?: boolean;
+    rol: Rol;
+    nombre: string;
+    codigo?: number;
+    titulo?: string;
+    creditosMaximos?: number;
 }

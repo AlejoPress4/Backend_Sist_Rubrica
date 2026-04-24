@@ -12,30 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreatePlanEstudioDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreatePlanEstudioDto {
-    nombre;
-    anio;
     carrera_id;
-    asignatura_id;
 }
 exports.CreatePlanEstudioDto = CreatePlanEstudioDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreatePlanEstudioDto.prototype, "nombre", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Number)
-], CreatePlanEstudioDto.prototype, "anio", void 0);
-__decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsUUID)('4', { message: 'El carrera_id debe ser un UUID v4 válido' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El carrera_id es obligatorio' }),
     __metadata("design:type", String)
 ], CreatePlanEstudioDto.prototype, "carrera_id", void 0);
-__decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreatePlanEstudioDto.prototype, "asignatura_id", void 0);
 //# sourceMappingURL=create-plan-estudio.dto.js.map

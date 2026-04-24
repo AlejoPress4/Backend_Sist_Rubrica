@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -11,13 +11,15 @@ import { UsersModule } from '../users/users.module';
 
 @Module({
     imports: [
-        UsersModule,
+        forwardRef(() => UsersModule),
         PassportModule,
         JwtModule.registerAsync({
             imports: [ConfigModule],
-            useFactory: async (configService: ConfigService) => ({
+            useFactory: (configService: ConfigService) => ({
                 secret: configService.get<string>('app.jwtSecret') || 'secretKey',
-                signOptions: { expiresIn: '1h' },
+                signOptions: {
+                    expiresIn: (configService.get<string>('app.jwtExpiresIn') || '1h') as any,
+                },
             }),
             inject: [ConfigService],
         }),

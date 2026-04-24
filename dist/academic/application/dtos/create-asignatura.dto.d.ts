@@ -1,6 +1,6 @@
 export declare class CreateAsignaturaDto {
+    codigo: string;
     nombre: string;
-    codigo?: string;
     descripcion?: string;
     creditos?: number;
 }

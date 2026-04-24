@@ -1,4 +1,22 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateAsignaturaDto } from './create-asignatura.dto';
+import { IsInt, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
 
-export class UpdateAsignaturaDto extends PartialType(CreateAsignaturaDto) {}
+export class UpdateAsignaturaDto {
+    @IsString()
+    @MaxLength(20)
+    @IsOptional()
+    codigo?: string;
+
+    @IsString()
+    @IsOptional()
+    nombre?: string;
+
+    @IsString()
+    @IsOptional()
+    descripcion?: string;
+
+    @IsInt()
+    @Min(1)
+    @Max(10)
+    @IsOptional()
+    creditos?: number;
+}

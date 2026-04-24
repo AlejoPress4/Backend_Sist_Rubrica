@@ -5,9 +5,13 @@ import { Nota } from './domain/entities/nota.entity';
 import { CalificacionDetalle } from './domain/entities/calificacion-detalle.entity';
 import { ScoresService } from './application/services/scores.service';
 import { ScoresController } from './infrastructure/controllers/scores.controller';
+import { RubricsModule } from '../rubrics/rubrics.module';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Evaluacion, Nota, CalificacionDetalle])],
+    imports: [
+        TypeOrmModule.forFeature([Evaluacion, Nota, CalificacionDetalle]),
+        RubricsModule,
+    ],
     controllers: [ScoresController],
     providers: [ScoresService],
     exports: [ScoresService],

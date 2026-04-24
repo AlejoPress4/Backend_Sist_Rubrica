@@ -1,15 +1,16 @@
 import { User } from './user.entity';
 import { Inscripcion } from '../../../courses/domain/entities/inscripcion.entity';
-import { Matricula } from '../../../academic/domain/entities/matricula.entity';
+import { Matricula } from '../../../courses/domain/entities/matricula.entity';
+import { CalificacionDetalle } from '../../../scores/domain/entities/calificacion-detalle.entity';
 export declare class Estudiante {
     id: number;
     nombre: string;
-    apellido: string;
-    cedula: string;
+    creditosMaximos: number;
     user: User;
-    user_id: string;
+    userId: string;
     inscripciones: Inscripcion[];
     matriculas: Matricula[];
-    created_at: Date;
-    updated_at: Date;
+    calificacionDetalles: CalificacionDetalle[];
+    creadoEn: Date;
+    actualizadoEn: Date;
 }

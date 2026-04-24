@@ -13,6 +13,7 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
+const event_emitter_1 = require("@nestjs/event-emitter");
 const app_config_1 = __importDefault(require("./config/app.config"));
 const database_config_1 = __importDefault(require("./config/database.config"));
 const auth_module_1 = require("./auth/auth.module");
@@ -32,6 +33,7 @@ exports.AppModule = AppModule = __decorate([
                 envFilePath: '.env',
                 load: [app_config_1.default, database_config_1.default],
             }),
+            event_emitter_1.EventEmitterModule.forRoot(),
             typeorm_1.TypeOrmModule.forRootAsync({
                 imports: [config_1.ConfigModule],
                 useFactory: (configService) => configService.get('database'),

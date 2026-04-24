@@ -19,14 +19,17 @@ const typeorm_2 = require("typeorm");
 const evaluacion_entity_1 = require("../../domain/entities/evaluacion.entity");
 const nota_entity_1 = require("../../domain/entities/nota.entity");
 const calificacion_detalle_entity_1 = require("../../domain/entities/calificacion-detalle.entity");
+const rubrics_service_1 = require("../../../rubrics/application/services/rubrics.service");
 let ScoresService = class ScoresService {
     evaluacionRepository;
     notaRepository;
     calificacionDetalleRepository;
-    constructor(evaluacionRepository, notaRepository, calificacionDetalleRepository) {
+    rubricsService;
+    constructor(evaluacionRepository, notaRepository, calificacionDetalleRepository, rubricsService) {
         this.evaluacionRepository = evaluacionRepository;
         this.notaRepository = notaRepository;
         this.calificacionDetalleRepository = calificacionDetalleRepository;
+        this.rubricsService = rubricsService;
     }
     async createEvaluacion(dto) {
         const evaluacion = this.evaluacionRepository.create(dto);
@@ -87,8 +90,22 @@ let ScoresService = class ScoresService {
         await this.notaRepository.remove(nota);
     }
     async createCalificacionDetalle(dto) {
-        const detalle = this.calificacionDetalleRepository.create(dto);
+        let puntaje = dto.puntaje || 0;
+        if (dto.escala_id) {
+            const escala = await this.rubricsService.findEscalaById(dto.escala_id);
+            const criterio = await this.rubricsService.findCriterioById(escala.criterio_id);
+            puntaje = Number(escala.valor) * (Number(criterio.peso) / 100);
+        }
+        const detalle = this.calificacionDetalleRepository.create({
+            ...dto,
+            puntaje,
+            evaluacion: { id: dto.evaluacion_id },
+            estudiante: { id: dto.estudiante_id }
+        });
         return this.calificacionDetalleRepository.save(detalle);
+    }
+    async findDetallesByEstudiante(estudiante_id) {
+        return this.calificacionDetalleRepository.find({ where: { estudiante: { id: estudiante_id } } });
     }
     async findAllDetalles() {
         return this.calificacionDetalleRepository.find();
@@ -103,11 +120,51 @@ let ScoresService = class ScoresService {
     async updateCalificacionDetalle(id, dto) {
         const detalle = await this.findDetalleById(id);
         Object.assign(detalle, dto);
+        if (dto.escala_id && dto.escala_id !== detalle.escala?.id) {
+            const escala = await this.rubricsService.findEscalaById(dto.escala_id);
+            const criterio = await this.rubricsService.findCriterioById(escala.criterio_id);
+            detalle.puntaje = Number(escala.valor) * (Number(criterio.peso) / 100);
+        }
         return this.calificacionDetalleRepository.save(detalle);
     }
     async removeCalificacionDetalle(id) {
         const detalle = await this.findDetalleById(id);
         await this.calificacionDetalleRepository.remove(detalle);
+    }
+    async findPromedioByEstudiante(estudiante_id) {
+        const detalles = await this.findDetallesByEstudiante(estudiante_id);
+        if (detalles.length === 0)
+            return 0;
+        const promedio = detalles.reduce((acc, detalle) => acc + Number(detalle.puntaje), 0) / detalles.length;
+        return promedio;
+    }
+    async calcularNotaEvaluacionEstudiante(evaluacion_id, estudiante_id) {
+        const detalles = await this.calificacionDetalleRepository.find({
+            where: {
+                evaluacion: { id: evaluacion_id },
+                estudiante: { id: estudiante_id }
+            }
+        });
+        const nota = detalles.reduce((acc, det) => acc + Number(det.puntaje), 0);
+        return nota;
+    }
+    async registrarNotaFinalGrupo(grupo_id, estudiante_id, asignaturas_ids) {
+        const evaluaciones = await this.evaluacionRepository.createQueryBuilder('ev')
+            .where('ev.asignatura_id IN (:...asignaturas_ids)', { asignaturas_ids })
+            .getMany();
+        let notaFinal = 0;
+        for (const ev of evaluaciones) {
+            const notaEv = await this.calcularNotaEvaluacionEstudiante(ev.id, estudiante_id);
+            notaFinal += notaEv * (Number(ev.peso) / 100);
+        }
+        const nota = this.notaRepository.create({
+            nota_final: notaFinal,
+            estudiante_id,
+            grupo_id,
+            oficial: true,
+            fecha_registro: new Date()
+        });
+        return this.notaRepository.save(nota);
     }
 };
 exports.ScoresService = ScoresService;
@@ -118,6 +175,7 @@ exports.ScoresService = ScoresService = __decorate([
     __param(2, (0, typeorm_1.InjectRepository)(calificacion_detalle_entity_1.CalificacionDetalle)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
-        typeorm_2.Repository])
+        typeorm_2.Repository,
+        rubrics_service_1.RubricsService])
 ], ScoresService);
 //# sourceMappingURL=scores.service.js.map

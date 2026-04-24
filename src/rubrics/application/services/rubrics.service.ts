@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, ConflictException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Rubrica } from '../../domain/entities/rubrica.entity';
@@ -46,6 +46,25 @@ export class RubricsService implements IRubricsService {
         if (!rubrica) {
             throw new NotFoundException(`Rúbrica con ID ${id} no encontrada`);
         }
+
+        if (dto.es_publica && !rubrica.es_publica) {
+            if (!rubrica.criterios || rubrica.criterios.length === 0) {
+                throw new BadRequestException('No se puede publicar una rúbrica sin criterios.');
+            }
+            
+            let totalPeso = 0;
+            for (const criterio of rubrica.criterios) {
+                totalPeso += Number(criterio.peso || 0);
+                if (!criterio.escalas || criterio.escalas.length < 2 || criterio.escalas.length > 5) {
+                    throw new BadRequestException(`El criterio '${criterio.nombre}' debe tener entre 2 y 5 escalas.`);
+                }
+            }
+            
+            if (totalPeso !== 100) {
+                throw new BadRequestException(`La suma de los pesos de los criterios debe ser exactamente 100. Actual: ${totalPeso}`);
+            }
+        }
+
         Object.assign(rubrica, dto);
         return this.rubricaRepository.save(rubrica);
     }
@@ -54,6 +73,9 @@ export class RubricsService implements IRubricsService {
         const rubrica = await this.findRubricaById(id);
         if (!rubrica) {
             throw new NotFoundException(`Rúbrica con ID ${id} no encontrada`);
+        }
+        if (rubrica.es_publica) {
+            throw new BadRequestException('No se puede eliminar una rúbrica publicada.');
         }
         await this.rubricaRepository.remove(rubrica);
     }
@@ -97,6 +119,10 @@ export class RubricsService implements IRubricsService {
     // ==================== Escalas ====================
 
     async createEscala(dto: CreateEscalaDto): Promise<Escala> {
+        const existing = await this.escalaRepository.findOne({ where: { criterio_id: dto.criterio_id, valor: dto.valor } });
+        if (existing) {
+            throw new ConflictException(`Ya existe una escala con el valor ${dto.valor} en este criterio.`);
+        }
         const escala = this.escalaRepository.create(dto);
         return this.escalaRepository.save(escala);
     }
@@ -115,6 +141,12 @@ export class RubricsService implements IRubricsService {
 
     async updateEscala(id: string, dto: UpdateEscalaDto): Promise<Escala> {
         const escala = await this.findEscalaById(id);
+        if (dto.valor !== undefined && dto.valor !== escala.valor) {
+            const existing = await this.escalaRepository.findOne({ where: { criterio_id: escala.criterio_id, valor: dto.valor } });
+            if (existing) {
+                throw new ConflictException(`Ya existe una escala con el valor ${dto.valor} en este criterio.`);
+            }
+        }
         Object.assign(escala, dto);
         return this.escalaRepository.save(escala);
     }

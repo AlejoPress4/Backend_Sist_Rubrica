@@ -12,17 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlanEstudio = void 0;
 const typeorm_1 = require("typeorm");
 const carrera_entity_1 = require("./carrera.entity");
-const asignatura_entity_1 = require("./asignatura.entity");
+const plan_asignatura_entity_1 = require("./plan-asignatura.entity");
 let PlanEstudio = class PlanEstudio {
     id;
-    nombre;
-    anio;
+    version;
+    publicado;
+    vigente;
+    fechaPublicacion;
     carrera;
     carrera_id;
-    asignatura;
-    asignatura_id;
-    created_at;
-    updated_at;
+    asignaturas;
+    creadoEn;
+    actualizadoEn;
 };
 exports.PlanEstudio = PlanEstudio;
 __decorate([
@@ -30,15 +31,23 @@ __decorate([
     __metadata("design:type", String)
 ], PlanEstudio.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", String)
-], PlanEstudio.prototype, "nombre", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    (0, typeorm_1.Column)({ type: 'int', default: 1 }),
     __metadata("design:type", Number)
-], PlanEstudio.prototype, "anio", void 0);
+], PlanEstudio.prototype, "version", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => carrera_entity_1.Carrera, carrera => carrera.planes),
+    (0, typeorm_1.Column)({ default: false }),
+    __metadata("design:type", Boolean)
+], PlanEstudio.prototype, "publicado", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: false }),
+    __metadata("design:type", Boolean)
+], PlanEstudio.prototype, "vigente", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'datetime', nullable: true }),
+    __metadata("design:type", Object)
+], PlanEstudio.prototype, "fechaPublicacion", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => carrera_entity_1.Carrera, (carrera) => carrera.planes_estudio, { onDelete: 'RESTRICT' }),
     (0, typeorm_1.JoinColumn)({ name: 'carrera_id' }),
     __metadata("design:type", carrera_entity_1.Carrera)
 ], PlanEstudio.prototype, "carrera", void 0);
@@ -47,23 +56,19 @@ __decorate([
     __metadata("design:type", String)
 ], PlanEstudio.prototype, "carrera_id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => asignatura_entity_1.Asignatura, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'asignatura_id' }),
-    __metadata("design:type", asignatura_entity_1.Asignatura)
-], PlanEstudio.prototype, "asignatura", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], PlanEstudio.prototype, "asignatura_id", void 0);
+    (0, typeorm_1.OneToMany)(() => plan_asignatura_entity_1.PlanAsignatura, (pa) => pa.planEstudio, { cascade: true }),
+    __metadata("design:type", Array)
+], PlanEstudio.prototype, "asignaturas", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], PlanEstudio.prototype, "created_at", void 0);
+], PlanEstudio.prototype, "creadoEn", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], PlanEstudio.prototype, "updated_at", void 0);
+], PlanEstudio.prototype, "actualizadoEn", void 0);
 exports.PlanEstudio = PlanEstudio = __decorate([
-    (0, typeorm_1.Entity)('planes_estudio')
+    (0, typeorm_1.Entity)('planes_estudio'),
+    (0, typeorm_1.Index)(['carrera_id', 'version'], { unique: true })
 ], PlanEstudio);
 //# sourceMappingURL=plan-estudio.entity.js.map

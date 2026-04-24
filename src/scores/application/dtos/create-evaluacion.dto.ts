@@ -9,6 +9,10 @@ export class CreateEvaluacionDto {
     @IsOptional()
     descripcion?: string;
 
+    @IsNumber({}, { message: 'El peso debe ser un número' })
+    @IsOptional()
+    peso?: number;
+
     @IsNumber({ maxDecimalPlaces: 2 }, { message: 'La nota debe ser un número con máximo 2 decimales' })
     @Min(0, { message: 'La nota mínima es 0' })
     @Max(5, { message: 'La nota máxima es 5' })

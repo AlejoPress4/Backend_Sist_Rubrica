@@ -17,6 +17,7 @@ let Criterio = class Criterio {
     id;
     nombre;
     descripcion;
+    peso;
     rubrica;
     rubrica_id;
     escalas;
@@ -36,6 +37,10 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Criterio.prototype, "descripcion", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2, default: 0 }),
+    __metadata("design:type", Number)
+], Criterio.prototype, "peso", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => rubrica_entity_1.Rubrica, (rubrica) => rubrica.criterios),
     (0, typeorm_1.JoinColumn)({ name: 'rubrica_id' }),

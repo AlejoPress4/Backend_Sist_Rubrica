@@ -2,8 +2,8 @@ import {
     Entity, PrimaryGeneratedColumn, Column,
     ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
-import { Inscripcion } from '../../../courses/domain/entities/inscripcion.entity';
-import { Rubrica } from 'src/rubrics/domain/entities/rubrica.entity';
+import { Estudiante } from '../../../users/domain/entities/estudiante.entity';
+import { Grupo } from '../../../courses/domain/entities/grupo.entity';
 
 @Entity('notas')
 export class Nota {
@@ -16,26 +16,29 @@ export class Nota {
     @Column({ nullable: true })
     observaciones: string;
 
+    @ManyToOne(() => Estudiante)
+    @JoinColumn()
+    estudiante: Estudiante;
+
+    @ManyToOne(() => Grupo)
+    @JoinColumn({ name: 'grupo_id' })
+    grupo: Grupo;
+    @Column({ nullable: true })
+    grupo_id: string;
+
+    @Column({ default: false })
+    oficial: boolean;
+
     @Column({ type: 'int' })
-    estudiante_id: number;
+    inscripcion_id: number;
 
-
-    //Relaciones
-    @ManyToOne(() => Inscripcion, inscripcion => inscripcion.notas)
-    @JoinColumn({ name: 'inscripcion_id' })
-    inscripcion: Inscripcion;
-    @Column()
-    inscripcion_id: string;
-    
-    @ManyToOne(() => Rubrica, rubrica => rubrica.notas)
-    @JoinColumn({ name: 'rubrica_id' })
-    rubrica: Rubrica
-    @Column()
-    rubrica_id: string;
+    @Column({ type: 'timestamp', nullable: true })
+    fecha_registro: Date;
 
     @CreateDateColumn()
     created_at: Date;
 
     @UpdateDateColumn()
     updated_at: Date;
+    inscripcion: any;
 }

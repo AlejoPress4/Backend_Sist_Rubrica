@@ -11,16 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const typeorm_1 = require("typeorm");
-const constants_1 = require("../../../common/constants/constants");
+const enums_1 = require("../../../common/enums");
+const docente_entity_1 = require("./docente.entity");
+const estudiante_entity_1 = require("./estudiante.entity");
 let User = class User {
     id;
-    email;
+    correoInstitucional;
     password;
-    codigo;
     rol;
-    is_active;
-    created_at;
-    updated_at;
+    activo;
+    docente;
+    estudiante;
+    creadoEn;
+    actualizadoEn;
 };
 exports.User = User;
 __decorate([
@@ -30,31 +33,35 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], User.prototype, "correoInstitucional", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ select: false }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], User.prototype, "codigo", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'simple-enum', enum: constants_1.UserRole }),
+    (0, typeorm_1.Column)({ type: 'simple-enum', enum: enums_1.Rol }),
     __metadata("design:type", String)
 ], User.prototype, "rol", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: true }),
     __metadata("design:type", Boolean)
-], User.prototype, "is_active", void 0);
+], User.prototype, "activo", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => docente_entity_1.Docente, (docente) => docente.user),
+    __metadata("design:type", docente_entity_1.Docente)
+], User.prototype, "docente", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => estudiante_entity_1.Estudiante, (estudiante) => estudiante.user),
+    __metadata("design:type", estudiante_entity_1.Estudiante)
+], User.prototype, "estudiante", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], User.prototype, "created_at", void 0);
+], User.prototype, "creadoEn", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], User.prototype, "updated_at", void 0);
+], User.prototype, "actualizadoEn", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)('users')
 ], User);

@@ -1,5 +1,5 @@
 export declare class CreateCarreraDto {
+    codigo: string;
     nombre: string;
-    codigo?: string;
     descripcion?: string;
 }

@@ -15,23 +15,33 @@ class CreateCalificacionDetalleDto {
     puntaje;
     comentario;
     escala_id;
+    estudiante_id;
+    evaluacion_id;
 }
 exports.CreateCalificacionDetalleDto = CreateCalificacionDetalleDto;
 __decorate([
-    (0, class_validator_1.IsNumber)({ maxDecimalPlaces: 2 }),
-    (0, class_validator_1.Min)(0),
-    (0, class_validator_1.Max)(5),
+    (0, class_validator_1.IsNumber)({ maxDecimalPlaces: 2 }, { message: 'El puntaje debe ser un número con máximo 2 decimales' }),
+    (0, class_validator_1.Min)(0, { message: 'El puntaje mínimo es 0' }),
+    (0, class_validator_1.Max)(5, { message: 'El puntaje máximo es 5' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], CreateCalificacionDetalleDto.prototype, "puntaje", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'El comentario debe ser un texto' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateCalificacionDetalleDto.prototype, "comentario", void 0);
 __decorate([
-    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsUUID)('4', { message: 'El escala_id debe ser un UUID v4 válido' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateCalificacionDetalleDto.prototype, "escala_id", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)({}, { message: 'El estudiante_id debe ser un número' }),
+    __metadata("design:type", Number)
+], CreateCalificacionDetalleDto.prototype, "estudiante_id", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)('4', { message: 'El evaluacion_id debe ser un UUID v4 válido' }),
+    __metadata("design:type", String)
+], CreateCalificacionDetalleDto.prototype, "evaluacion_id", void 0);
 //# sourceMappingURL=create-calificacion-detalle.dto.js.map

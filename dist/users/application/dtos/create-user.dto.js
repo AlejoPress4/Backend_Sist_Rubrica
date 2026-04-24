@@ -11,39 +11,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserDto = void 0;
 const class_validator_1 = require("class-validator");
-const constants_1 = require("../../../common/constants/constants");
+const enums_1 = require("../../../common/enums");
 class CreateUserDto {
-    email;
+    correoInstitucional;
     password;
-    codigo;
     rol;
-    is_active;
+    nombre;
+    codigo;
+    titulo;
+    creditosMaximos;
 }
 exports.CreateUserDto = CreateUserDto;
 __decorate([
-    (0, class_validator_1.IsEmail)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsEmail)({}, { message: 'El correo institucional debe tener un formato válido' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El correo institucional es obligatorio' }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "email", void 0);
+], CreateUserDto.prototype, "correoInstitucional", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.MinLength)(6),
+    (0, class_validator_1.IsString)({ message: 'La contraseña debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'La contraseña es obligatoria' }),
+    (0, class_validator_1.MinLength)(6, { message: 'La contraseña debe tener al menos 6 caracteres' }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
 __decorate([
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], CreateUserDto.prototype, "codigo", void 0);
-__decorate([
-    (0, class_validator_1.IsEnum)(constants_1.UserRole),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsEnum)(enums_1.Rol, { message: 'El rol debe ser uno de: ADMIN, DOCENTE, ESTUDIANTE' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El rol es obligatorio' }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "rol", void 0);
 __decorate([
-    (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsString)({ message: 'El nombre debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El nombre es obligatorio' }),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "nombre", void 0);
+__decorate([
+    (0, class_validator_1.IsInt)({ message: 'El código debe ser un número entero' }),
+    (0, class_validator_1.Min)(1, { message: 'El código debe ser mayor a 0' }),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Boolean)
-], CreateUserDto.prototype, "is_active", void 0);
+    __metadata("design:type", Number)
+], CreateUserDto.prototype, "codigo", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'El título debe ser un texto' }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "titulo", void 0);
+__decorate([
+    (0, class_validator_1.IsInt)({ message: 'Los créditos máximos deben ser un número entero' }),
+    (0, class_validator_1.Min)(1, { message: 'Los créditos máximos deben ser al menos 1' }),
+    (0, class_validator_1.Max)(30, { message: 'Los créditos máximos no pueden superar 30' }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], CreateUserDto.prototype, "creditosMaximos", void 0);
 //# sourceMappingURL=create-user.dto.js.map

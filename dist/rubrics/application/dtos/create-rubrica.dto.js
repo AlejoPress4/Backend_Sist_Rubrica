@@ -18,17 +18,17 @@ class CreateRubricaDto {
 }
 exports.CreateRubricaDto = CreateRubricaDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)({ message: 'El título de la rúbrica debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El título de la rúbrica es obligatorio' }),
     __metadata("design:type", String)
 ], CreateRubricaDto.prototype, "titulo", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'La descripción de la rúbrica debe ser un texto' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateRubricaDto.prototype, "descripcion", void 0);
 __decorate([
-    (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsBoolean)({ message: 'El campo es_publica debe ser verdadero o falso' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
 ], CreateRubricaDto.prototype, "es_publica", void 0);

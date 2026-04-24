@@ -14,22 +14,30 @@ const class_validator_1 = require("class-validator");
 class CreateCriterioDto {
     nombre;
     descripcion;
+    peso;
     rubrica_id;
 }
 exports.CreateCriterioDto = CreateCriterioDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)({ message: 'El nombre del criterio debe ser un texto' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El nombre del criterio es obligatorio' }),
     __metadata("design:type", String)
 ], CreateCriterioDto.prototype, "nombre", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'La descripción del criterio debe ser un texto' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateCriterioDto.prototype, "descripcion", void 0);
 __decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNumber)({}, { message: 'El peso debe ser un número' }),
+    (0, class_validator_1.Min)(0, { message: 'El peso no puede ser negativo' }),
+    (0, class_validator_1.Max)(100, { message: 'El peso no puede superar 100' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El peso es obligatorio' }),
+    __metadata("design:type", Number)
+], CreateCriterioDto.prototype, "peso", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)('4', { message: 'El rubrica_id debe ser un UUID v4 válido' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El rubrica_id es obligatorio' }),
     __metadata("design:type", String)
 ], CreateCriterioDto.prototype, "rubrica_id", void 0);
 //# sourceMappingURL=create-criterio.dto.js.map

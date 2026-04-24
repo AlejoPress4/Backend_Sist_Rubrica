@@ -17,207 +17,96 @@ const common_1 = require("@nestjs/common");
 const users_service_1 = require("../../application/services/users.service");
 const create_user_dto_1 = require("../../application/dtos/create-user.dto");
 const update_user_dto_1 = require("../../application/dtos/update-user.dto");
-const create_docente_dto_1 = require("../../application/dtos/create-docente.dto");
-const update_docente_dto_1 = require("../../application/dtos/update-docente.dto");
-const create_estudiante_dto_1 = require("../../application/dtos/create-estudiante.dto");
-const update_estudiante_dto_1 = require("../../application/dtos/update-estudiante.dto");
+const filter_users_dto_1 = require("../../application/dtos/filter-users.dto");
+const user_response_dto_1 = require("../../application/dtos/user-response.dto");
 const api_response_dto_1 = require("../../../common/dtos/api-response.dto");
+const jwt_auth_guard_1 = require("../../../auth/infrastructure/guards/jwt-auth.guard");
+const roles_guard_1 = require("../../../auth/infrastructure/guards/roles.guard");
+const roles_decorator_1 = require("../../../common/decorators/roles.decorator");
+const enums_1 = require("../../../common/enums");
 let UsersController = class UsersController {
     usersService;
     constructor(usersService) {
         this.usersService = usersService;
     }
-    async createUser(dto) {
-        const data = await this.usersService.createUser(dto);
-        return api_response_dto_1.ApiResponseDto.created(data, 'Usuario creado exitosamente');
+    async create(dto) {
+        const user = await this.usersService.create(dto);
+        return api_response_dto_1.ApiResponseDto.created(user_response_dto_1.UserResponseDto.fromEntity(user), 'Usuario creado exitosamente');
     }
-    async findAllUsers() {
-        const data = await this.usersService.findAllUsers();
-        return api_response_dto_1.ApiResponseDto.success(data);
+    async findAll(filter) {
+        const users = await this.usersService.findAll(filter);
+        return api_response_dto_1.ApiResponseDto.success(users.map(user_response_dto_1.UserResponseDto.fromEntity));
     }
-    async findUserById(id) {
-        const data = await this.usersService.findUserById(id);
-        return api_response_dto_1.ApiResponseDto.success(data);
+    async findById(id) {
+        const user = await this.usersService.findById(id);
+        return api_response_dto_1.ApiResponseDto.success(user_response_dto_1.UserResponseDto.fromEntity(user));
     }
-    async updateUser(id, dto) {
-        const data = await this.usersService.updateUser(id, dto);
-        return api_response_dto_1.ApiResponseDto.success(data, 'Usuario actualizado exitosamente');
+    async update(id, dto) {
+        const user = await this.usersService.update(id, dto);
+        return api_response_dto_1.ApiResponseDto.success(user_response_dto_1.UserResponseDto.fromEntity(user), 'Usuario actualizado exitosamente');
     }
-    async removeUser(id) {
-        await this.usersService.removeUser(id);
+    async desactivar(id) {
+        const user = await this.usersService.desactivar(id);
+        return api_response_dto_1.ApiResponseDto.success(user_response_dto_1.UserResponseDto.fromEntity(user), 'Usuario desactivado exitosamente');
+    }
+    async remove(id) {
+        await this.usersService.remove(id);
         return api_response_dto_1.ApiResponseDto.success(null, 'Usuario eliminado exitosamente');
-    }
-    async createDocente(dto) {
-        const data = await this.usersService.createDocente(dto);
-        return api_response_dto_1.ApiResponseDto.created(data, 'Docente creado exitosamente');
-    }
-    async findAllDocentes() {
-        const data = await this.usersService.findAllDocentes();
-        return api_response_dto_1.ApiResponseDto.success(data);
-    }
-    async findDocenteById(id) {
-        const data = await this.usersService.findDocenteById(id);
-        return api_response_dto_1.ApiResponseDto.success(data);
-    }
-    async findDocenteByUserId(user_id) {
-        const data = await this.usersService.findDocenteByUserId(user_id);
-        return api_response_dto_1.ApiResponseDto.success(data);
-    }
-    async updateDocente(id, dto) {
-        const data = await this.usersService.updateDocente(id, dto);
-        return api_response_dto_1.ApiResponseDto.success(data, 'Docente actualizado exitosamente');
-    }
-    async removeDocente(id) {
-        await this.usersService.removeDocente(id);
-        return api_response_dto_1.ApiResponseDto.success(null, 'Docente eliminado exitosamente');
-    }
-    async createEstudiante(dto) {
-        const data = await this.usersService.createEstudiante(dto);
-        return api_response_dto_1.ApiResponseDto.created(data, 'Estudiante creado exitosamente');
-    }
-    async findAllEstudiantes() {
-        const data = await this.usersService.findAllEstudiantes();
-        return api_response_dto_1.ApiResponseDto.success(data);
-    }
-    async findEstudianteById(id) {
-        const data = await this.usersService.findEstudianteById(id);
-        return api_response_dto_1.ApiResponseDto.success(data);
-    }
-    async findEstudianteByUserId(user_id) {
-        const data = await this.usersService.findEstudianteByUserId(user_id);
-        return api_response_dto_1.ApiResponseDto.success(data);
-    }
-    async updateEstudiante(id, dto) {
-        const data = await this.usersService.updateEstudiante(id, dto);
-        return api_response_dto_1.ApiResponseDto.success(data, 'Estudiante actualizado exitosamente');
-    }
-    async removeEstudiante(id) {
-        await this.usersService.removeEstudiante(id);
-        return api_response_dto_1.ApiResponseDto.success(null, 'Estudiante eliminado exitosamente');
     }
 };
 exports.UsersController = UsersController;
 __decorate([
     (0, common_1.Post)(),
+    (0, roles_decorator_1.Roles)(enums_1.Rol.ADMIN),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
-], UsersController.prototype, "createUser", null);
+], UsersController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, roles_decorator_1.Roles)(enums_1.Rol.ADMIN),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [filter_users_dto_1.FilterUsersDto]),
     __metadata("design:returntype", Promise)
-], UsersController.prototype, "findAllUsers", null);
+], UsersController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, roles_decorator_1.Roles)(enums_1.Rol.ADMIN),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], UsersController.prototype, "findUserById", null);
+], UsersController.prototype, "findById", null);
 __decorate([
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Patch)(':id'),
+    (0, roles_decorator_1.Roles)(enums_1.Rol.ADMIN),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", Promise)
-], UsersController.prototype, "updateUser", null);
+], UsersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Patch)(':id/desactivar'),
+    (0, roles_decorator_1.Roles)(enums_1.Rol.ADMIN),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "desactivar", null);
 __decorate([
     (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, roles_decorator_1.Roles)(enums_1.Rol.ADMIN),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], UsersController.prototype, "removeUser", null);
-__decorate([
-    (0, common_1.Post)('docentes'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_docente_dto_1.CreateDocenteDto]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "createDocente", null);
-__decorate([
-    (0, common_1.Get)('docentes'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "findAllDocentes", null);
-__decorate([
-    (0, common_1.Get)('docentes/:id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "findDocenteById", null);
-__decorate([
-    (0, common_1.Get)('docentes/user/:user_id'),
-    __param(0, (0, common_1.Param)('user_id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "findDocenteByUserId", null);
-__decorate([
-    (0, common_1.Put)('docentes/:id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_docente_dto_1.UpdateDocenteDto]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "updateDocente", null);
-__decorate([
-    (0, common_1.Delete)('docentes/:id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "removeDocente", null);
-__decorate([
-    (0, common_1.Post)('estudiantes'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_estudiante_dto_1.CreateEstudianteDto]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "createEstudiante", null);
-__decorate([
-    (0, common_1.Get)('estudiantes'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "findAllEstudiantes", null);
-__decorate([
-    (0, common_1.Get)('estudiantes/:id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "findEstudianteById", null);
-__decorate([
-    (0, common_1.Get)('estudiantes/user/:user_id'),
-    __param(0, (0, common_1.Param)('user_id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "findEstudianteByUserId", null);
-__decorate([
-    (0, common_1.Put)('estudiantes/:id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_estudiante_dto_1.UpdateEstudianteDto]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "updateEstudiante", null);
-__decorate([
-    (0, common_1.Delete)('estudiantes/:id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "removeEstudiante", null);
+], UsersController.prototype, "remove", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
 //# sourceMappingURL=users.controller.js.map

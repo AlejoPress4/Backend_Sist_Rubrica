@@ -1,7 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    OneToMany,
+} from 'typeorm';
 import { Grupo } from '../../../courses/domain/entities/grupo.entity';
-import { Evaluacion } from 'src/scores/domain/entities/evaluacion.entity';
-import { PlanEstudio } from './plan-estudio.entity';
+import { Evaluacion } from '../../../scores/domain/entities/evaluacion.entity';
+import { PlanAsignatura } from './plan-asignatura.entity';
 
 @Entity('asignaturas')
 export class Asignatura {
@@ -11,27 +18,27 @@ export class Asignatura {
     @Column()
     nombre: string;
 
-    @Column({ nullable: true })
+    @Column({ unique: true })
     codigo: string;
 
     @Column({ nullable: true })
     descripcion: string;
 
-    @Column({ default: 0 })
+    @Column({ type: 'int', default: 0 })
     creditos: number;
 
-    @OneToMany(() => Grupo, grupo => grupo.asignatura)
+    @OneToMany(() => Grupo, (grupo) => grupo.asignatura)
     grupos: Grupo[];
 
-    @OneToMany(() => Evaluacion, evaluacion => evaluacion.asignatura)
+    @OneToMany(() => Evaluacion, (evaluacion) => evaluacion.asignatura)
     evaluaciones: Evaluacion[];
 
-    @OneToMany(() => PlanEstudio, plan => plan.asignatura)
-    planes: PlanEstudio[];
+    @OneToMany(() => PlanAsignatura, (pa) => pa.asignatura)
+    planAsignaturas: PlanAsignatura[];
 
     @CreateDateColumn()
-    created_at: Date;
+    creadoEn: Date;
 
     @UpdateDateColumn()
-    updated_at: Date;
+    actualizadoEn: Date;
 }

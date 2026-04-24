@@ -9,11 +9,13 @@ import { CreateNotaDto } from '../dtos/create-nota.dto';
 import { UpdateNotaDto } from '../dtos/update-nota.dto';
 import { CreateCalificacionDetalleDto } from '../dtos/create-calificacion-detalle.dto';
 import { UpdateCalificacionDetalleDto } from '../dtos/update-calificacion-detalle.dto';
+import { RubricsService } from '../../../rubrics/application/services/rubrics.service';
 export declare class ScoresService implements IScoresService {
     private readonly evaluacionRepository;
     private readonly notaRepository;
     private readonly calificacionDetalleRepository;
-    constructor(evaluacionRepository: Repository<Evaluacion>, notaRepository: Repository<Nota>, calificacionDetalleRepository: Repository<CalificacionDetalle>);
+    private readonly rubricsService;
+    constructor(evaluacionRepository: Repository<Evaluacion>, notaRepository: Repository<Nota>, calificacionDetalleRepository: Repository<CalificacionDetalle>, rubricsService: RubricsService);
     createEvaluacion(dto: CreateEvaluacionDto): Promise<Evaluacion>;
     findAllEvaluaciones(): Promise<Evaluacion[]>;
     findEvaluacionById(id: string): Promise<Evaluacion>;
@@ -29,8 +31,12 @@ export declare class ScoresService implements IScoresService {
     updateNota(id: string, dto: UpdateNotaDto): Promise<Nota>;
     removeNota(id: string): Promise<void>;
     createCalificacionDetalle(dto: CreateCalificacionDetalleDto): Promise<CalificacionDetalle>;
+    findDetallesByEstudiante(estudiante_id: number): Promise<CalificacionDetalle[]>;
     findAllDetalles(): Promise<CalificacionDetalle[]>;
     findDetalleById(id: string): Promise<CalificacionDetalle>;
     updateCalificacionDetalle(id: string, dto: UpdateCalificacionDetalleDto): Promise<CalificacionDetalle>;
     removeCalificacionDetalle(id: string): Promise<void>;
+    findPromedioByEstudiante(estudiante_id: number): Promise<number>;
+    calcularNotaEvaluacionEstudiante(evaluacion_id: string, estudiante_id: number): Promise<number>;
+    registrarNotaFinalGrupo(grupo_id: string, estudiante_id: number, asignaturas_ids: string[]): Promise<Nota>;
 }

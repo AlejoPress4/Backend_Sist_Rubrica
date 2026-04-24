@@ -12,12 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CalificacionDetalle = void 0;
 const typeorm_1 = require("typeorm");
 const escala_entity_1 = require("../../../rubrics/domain/entities/escala.entity");
+const estudiante_entity_1 = require("../../../users/domain/entities/estudiante.entity");
+const evaluacion_entity_1 = require("./evaluacion.entity");
 let CalificacionDetalle = class CalificacionDetalle {
     id;
     puntaje;
     comentario;
     escala;
-    escala_id;
+    estudiante;
+    evaluacion;
+    evaluacion_id;
     created_at;
     updated_at;
 };
@@ -40,9 +44,19 @@ __decorate([
     __metadata("design:type", escala_entity_1.Escala)
 ], CalificacionDetalle.prototype, "escala", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    (0, typeorm_1.ManyToOne)(() => estudiante_entity_1.Estudiante, estudiante => estudiante.calificacionDetalles),
+    (0, typeorm_1.JoinColumn)({ name: 'estudiante_id' }),
+    __metadata("design:type", estudiante_entity_1.Estudiante)
+], CalificacionDetalle.prototype, "estudiante", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => evaluacion_entity_1.Evaluacion, evaluacion => evaluacion.calificacionDetalles),
+    (0, typeorm_1.JoinColumn)({ name: 'evaluacion_id' }),
+    __metadata("design:type", evaluacion_entity_1.Evaluacion)
+], CalificacionDetalle.prototype, "evaluacion", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], CalificacionDetalle.prototype, "escala_id", void 0);
+], CalificacionDetalle.prototype, "evaluacion_id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

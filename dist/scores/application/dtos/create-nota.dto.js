@@ -15,33 +15,27 @@ class CreateNotaDto {
     nota_final;
     observaciones;
     estudiante_id;
-    inscripcion_id;
-    rubrica_id;
+    grupo_id;
 }
 exports.CreateNotaDto = CreateNotaDto;
 __decorate([
-    (0, class_validator_1.IsNumber)({ maxDecimalPlaces: 2 }),
+    (0, class_validator_1.IsNumber)({ maxDecimalPlaces: 2 }, { message: 'La nota final debe ser un número con máximo 2 decimales' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], CreateNotaDto.prototype, "nota_final", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'Las observaciones deben ser un texto' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateNotaDto.prototype, "observaciones", void 0);
 __decorate([
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsInt)({ message: 'El estudiante_id debe ser un número entero' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El estudiante_id es obligatorio' }),
     __metadata("design:type", Number)
 ], CreateNotaDto.prototype, "estudiante_id", void 0);
 __decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsUUID)('4', { message: 'El grupo_id debe ser un UUID v4 válido' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El grupo_id es obligatorio' }),
     __metadata("design:type", String)
-], CreateNotaDto.prototype, "inscripcion_id", void 0);
-__decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateNotaDto.prototype, "rubrica_id", void 0);
+], CreateNotaDto.prototype, "grupo_id", void 0);
 //# sourceMappingURL=create-nota.dto.js.map

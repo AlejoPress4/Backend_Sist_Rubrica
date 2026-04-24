@@ -1,12 +1,13 @@
 import { PlanEstudio } from './plan-estudio.entity';
-import { Matricula } from './matricula.entity';
+import { Semestre } from './semestre.entity';
 export declare class Carrera {
     id: string;
-    nombre: string;
     codigo: string;
+    nombre: string;
     descripcion: string;
-    planes: PlanEstudio[];
-    matriculas: Matricula[];
-    created_at: Date;
-    updated_at: Date;
+    archivada: boolean;
+    planes_estudio: PlanEstudio[];
+    semestres: Semestre[];
+    creadoEn: Date;
+    actualizadoEn: Date;
 }

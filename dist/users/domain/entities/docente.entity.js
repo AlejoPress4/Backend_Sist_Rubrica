@@ -16,19 +16,16 @@ const grupo_entity_1 = require("../../../courses/domain/entities/grupo.entity");
 let Docente = class Docente {
     id;
     nombre;
-    apellido;
-    telefono;
-    cedula;
-    especialidad;
+    titulo;
     user;
-    user_id;
+    userId;
     grupos;
-    created_at;
-    updated_at;
+    creadoEn;
+    actualizadoEn;
 };
 exports.Docente = Docente;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryColumn)({ type: 'int' }),
     __metadata("design:type", Number)
 ], Docente.prototype, "id", void 0);
 __decorate([
@@ -36,42 +33,30 @@ __decorate([
     __metadata("design:type", String)
 ], Docente.prototype, "nombre", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Docente.prototype, "apellido", void 0);
-__decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], Docente.prototype, "telefono", void 0);
+], Docente.prototype, "titulo", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", String)
-], Docente.prototype, "cedula", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", String)
-], Docente.prototype, "especialidad", void 0);
-__decorate([
-    (0, typeorm_1.OneToOne)(() => user_entity_1.User, { eager: true }),
-    (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
+    (0, typeorm_1.OneToOne)(() => user_entity_1.User, (user) => user.docente, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.JoinColumn)({ name: 'userId' }),
     __metadata("design:type", user_entity_1.User)
 ], Docente.prototype, "user", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Docente.prototype, "user_id", void 0);
+], Docente.prototype, "userId", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => grupo_entity_1.Grupo, grupo => grupo.docente),
+    (0, typeorm_1.ManyToMany)(() => grupo_entity_1.Grupo, (grupo) => grupo.docentes),
     __metadata("design:type", Array)
 ], Docente.prototype, "grupos", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Docente.prototype, "created_at", void 0);
+], Docente.prototype, "creadoEn", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Docente.prototype, "updated_at", void 0);
+], Docente.prototype, "actualizadoEn", void 0);
 exports.Docente = Docente = __decorate([
     (0, typeorm_1.Entity)('docentes')
 ], Docente);

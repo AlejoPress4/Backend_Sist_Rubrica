@@ -26,6 +26,8 @@ export declare class ScoresController {
     createCalificacionDetalle(dto: CreateCalificacionDetalleDto): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle>>;
     findAllDetalles(): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle[]>>;
     findDetalleById(id: string): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle>>;
+    findDetallesByEstudiante(estudiante_id: number): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle[]>>;
+    findPromedioByEstudiante(estudiante_id: number): Promise<ApiResponseDto<number>>;
     updateCalificacionDetalle(id: string, dto: UpdateCalificacionDetalleDto): Promise<ApiResponseDto<import("../../domain/entities/calificacion-detalle.entity").CalificacionDetalle>>;
     removeCalificacionDetalle(id: string): Promise<ApiResponseDto<null>>;
 }

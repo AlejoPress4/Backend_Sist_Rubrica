@@ -1,6 +1,6 @@
 import { Grupo } from '../../../courses/domain/entities/grupo.entity';
-import { Evaluacion } from 'src/scores/domain/entities/evaluacion.entity';
-import { PlanEstudio } from './plan-estudio.entity';
+import { Evaluacion } from '../../../scores/domain/entities/evaluacion.entity';
+import { PlanAsignatura } from './plan-asignatura.entity';
 export declare class Asignatura {
     id: string;
     nombre: string;
@@ -9,7 +9,7 @@ export declare class Asignatura {
     creditos: number;
     grupos: Grupo[];
     evaluaciones: Evaluacion[];
-    planes: PlanEstudio[];
-    created_at: Date;
-    updated_at: Date;
+    planAsignaturas: PlanAsignatura[];
+    creadoEn: Date;
+    actualizadoEn: Date;
 }
